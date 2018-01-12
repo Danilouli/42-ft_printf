@@ -6,7 +6,7 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/13 18:38:26 by dsaadia           #+#    #+#             */
-/*   Updated: 2017/12/23 17:51:06 by dsaadia          ###   ########.fr       */
+/*   Updated: 2018/01/11 17:45:10 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,10 @@ char				*ft_strnstr(const char *str, const char *to_find, size_t n);
 char				*ft_strstr(const char *str, const char *to_find);
 void				*ft_memccpy(void *dest, const void *src, int c, size_t n);
 int					ft_isspacer(char c);
-int					printf(const char *format, ...);
+void 				ft_lstreverse(t_list **beg_lst);
+int					ft_fprintf(int fd, const char *format, ...);
+int					ft_printf(const char *format, ...);
+char				*ft_itos(int nb);
 void				ft_troll(void);
 
 #endif
