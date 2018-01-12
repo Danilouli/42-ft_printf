@@ -6,7 +6,7 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/23 17:29:22 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/01/11 18:10:07 by dsaadia          ###   ########.fr       */
+/*   Updated: 2018/01/12 22:05:37 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,37 +14,92 @@
 #include "ft_printf.h"
 #include <stdio.h>
 
-int is_printf_arg(const char *pt)
+int is_printf_flag(char c)
 {
-	return(*pt == '%' && *(pt + 1) && *(pt + 1) != '%');
+	char flags[] = "#0-+ hljz*$L'";
+	return (ft_strchr(flags, c) != 0);
 }
 
-void count_printf_args(const char *form)
+int is_printf_conversion(char c)
+{
+	char conversions[] = "sSpdDioOuUxXcCeEfFgGaAnm";
+	return (ft_strchr(conversions, c) != 0);
+}
+
+int is_printf_arg(const char *format, char *info)
+{
+	int c;
+	char *str;
+
+	str = (char*)format;
+	c = 0;
+	*info = 'l';
+	if (*str != '%')
+		return (0);
+	str++;
+	while (*str && ++c)
+	{
+		if (!is_printf_flag(*str) && !is_printf_conversion(*str) && *str != '%')
+		{
+			*info = 'e';
+			return (-1);
+		}
+		if (*str == '%')
+		{
+			*info = '%';
+			return (c);
+		}
+		else if (is_printf_conversion(*str))
+		{
+			*info = 'c';
+			return (c);
+		}
+		str++;
+	}
+	return (-1);
+}
+
+int count_printf_args(const char *form)
 {
 	int j;
 	int c;
+	int p;
+	char infos;
+
 	t_pfargs pfargs;
 
 	j = 0;
 	c = 1;
+	p = 0;
 	while (form[j])
 	{
-		if(form[j] == '%' && form[j + 1] && form[j + 1] != '%')
+		p = is_printf_arg(&(form[j]), &infos);
+		if (p > 0 && infos == 'c')
 		{
-			c = 1;
-			while (form[j + c] && !ft_isalpha(form[j + c]) && form[j + c] != '%')
-				c++;
-			if (!form[j + c])
-				break;
-			if (form[j + c] != '%')
-			{
-				pfargs.value = ft_strsub(form, j, c + 1);
-				pfargs.type = form[j + c];
-				pfargs.len = ft_strlen(pfargs.value);
-				ft_lstadd(&g_pfargs, ft_lstnew((&pfargs), sizeof(t_pfargs*) + sizeof(char*) + 1 + sizeof(int)));
-			}
+			pfargs.value = ft_strsub(form, j, p + 1);
+			pfargs.type = form[j + p];
+			pfargs.index = j;
+			pfargs.len = ft_strlen(pfargs.value);
+			ft_lstadd(&g_pfargs, ft_lstnew((&pfargs), sizeof(pfargs)));
+			j = j + p + 1;
 		}
-		j = (form[j] == '%' && form[j + 1] == '%') ? j + 2 : j + 1;
+		else if (p > 0 && infos == '%')
+		{
+			pfargs.value = ft_strsub(form, j, p + 1);
+			pfargs.type = '%';
+			pfargs.index = j;
+			pfargs.len = ft_strlen(pfargs.value);
+			ft_lstadd(&g_pfargs, ft_lstnew((&pfargs), sizeof(pfargs)));
+			j = j + p + 1;
+		}
+		else if (p == -1)
+		{
+			g_pfargs = 0;
+			return (0);
+		}
+		else if (infos == 'l')
+			j++;
 	}
 	ft_lstreverse(&g_pfargs);
+	return (1);
 }

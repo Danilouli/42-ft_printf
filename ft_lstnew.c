@@ -6,7 +6,7 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/19 14:12:23 by dsaadia           #+#    #+#             */
-/*   Updated: 2017/12/19 14:23:30 by dsaadia          ###   ########.fr       */
+/*   Updated: 2018/01/12 21:17:48 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_list	*ft_lstnew(void const *content, size_t content_size)
 		return (NULL);
 	if (content)
 	{
-		if (!(list->content = ft_memalloc(list->content_size)))
+		if (!(list->content = ft_memalloc(content_size)))
 		{
 			free(list);
 			return (NULL);

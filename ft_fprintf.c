@@ -6,7 +6,7 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/21 17:23:19 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/01/11 18:48:24 by dsaadia          ###   ########.fr       */
+/*   Updated: 2018/01/12 21:44:07 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,65 +14,51 @@
 #include <stdio.h>
 #include "ft_printf.h"
 
-t_conv g_convertors[] =
+t_conv convertors[] =
 {
 	{'d', &intconv},
 	{'c', &charconv},
-	{'s', &strconv}
+	{'s', &strconv},
+	{'%', &perconv}
 };
-
-int add_n(int nbop, ...)
-{
-	int i, s = 0;
-	va_list(ap);
-	va_start(ap, nbop);
-	for (i = 1; i <= nbop; i++)
-	{
-		s += va_arg(ap,int);
-	}
-	va_end(ap);
-	return(s);
-}
 
 int ft_fprintf(int fd, const char *format, ...)
 {
 	(void)fd;
-	char *keep;
 	char *res;
-	int formlen;
-	int ct = -1;
+	int lenk = 0;
+	int ct = 0;
+	int i = -1;
+	int formlen = 0;
 	va_list(ap);
 	va_start(ap, format);
-	count_printf_args(format);
-	formlen = 0;
-	while (*format)
+	if(!count_printf_args(format))
+		return (-1);
+	while (format[ct])
 	{
-		if (is_printf_arg(format))
+		if (g_pfargs && ct == PFARGS(index))
 		{
-			if(g_pfargs)
+			while (++i < 4)
 			{
-				keep = PFARGS(value);
-				while (ct++ < 3)
+				if (PFARGS(type) == convertors[i].sign)
 				{
-					if (PFARGS(type) == g_convertors[ct].sign)
-					{
-						res = g_convertors[ct].convertor(keep,ap);
-					}
+					res = convertors[i].convertor(PFARGS(value), ap, &lenk);
+					ft_putstr(res);
+					break;
 				}
-				ct = -1;
-				ft_putstr(res);
-				formlen += (PFARGS(len) - 1);
-				format += PFARGS(len);
-				g_pfargs = g_pfargs->next;
 			}
+			i = -1;
+			formlen += lenk;
+			ct += PFARGS(len);
+			g_pfargs = g_pfargs->next;
 		}
 		else
 		{
-			ft_putchar(*format);
-			formlen++;
-			format++;
+			ft_putchar(format[ct]);
+			ct++;
 		}
 	}
+	va_end(ap);
 	return (formlen);
 }
 
@@ -81,8 +67,10 @@ int	main(int argc, char **argv)
 	int ret;
 	if (argc < 2)
 		return (0);
-	ret = ft_fprintf(0, argv[1], 5, 'E', 8);
+	ret = ft_fprintf(0, argv[1], 7, 5);
 	ft_putchar('\n');
+	ft_putstr("ret ");
 	ft_putnbr(ret);
+	ft_putchar('\n');
 	return(0);
 }
