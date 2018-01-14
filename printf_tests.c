@@ -6,7 +6,7 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/12 16:13:39 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/01/12 17:36:52 by dsaadia          ###   ########.fr       */
+/*   Updated: 2018/01/14 18:59:59 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 
 int main()
 {
-	int ret;
-	ret = printf("a %d v %%% %d s", 7, 5);
-	printf("\n");
-	printf("%d\n",ret);
+	printf("te %s st\n", "dq");
+	printf("te %0  d st\n", 7);
+	printf("te %03d st\n", 7);
+	printf("te %-2d st\n", 71);
+	printf("te %.2d st\n", 7);
+	printf("te %.2d st\n", 71);
 }

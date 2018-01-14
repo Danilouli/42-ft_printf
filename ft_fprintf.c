@@ -6,7 +6,7 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/21 17:23:19 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/01/12 21:44:07 by dsaadia          ###   ########.fr       */
+/*   Updated: 2018/01/14 19:14:58 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int ft_fprintf(int fd, const char *format, ...)
 		else
 		{
 			ft_putchar(format[ct]);
+			formlen++;
 			ct++;
 		}
 	}
@@ -65,12 +66,18 @@ int ft_fprintf(int fd, const char *format, ...)
 int	main(int argc, char **argv)
 {
 	int ret;
+	ret = 0;
+	(void)argv;
+	char *rut;
+	//char allowed_flags[5] = "+-0 z";
 	if (argc < 2)
 		return (0);
-	ret = ft_fprintf(0, argv[1], 7, 5);
+	//ret = ft_fprintf(0, argv[1], 7, "uy");
+	rut = format_numeric("+0-0-","7",8,7);
 	ft_putchar('\n');
-	ft_putstr("ret ");
-	ft_putnbr(ret);
+	ft_putstr("rut->");
+	if(rut)
+		ft_putstr(rut);
 	ft_putchar('\n');
 	return(0);
 }

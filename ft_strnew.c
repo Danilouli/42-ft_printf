@@ -6,7 +6,7 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/19 14:13:03 by dsaadia           #+#    #+#             */
-/*   Updated: 2017/12/19 14:13:04 by dsaadia          ###   ########.fr       */
+/*   Updated: 2018/01/14 18:56:22 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,6 @@ char	*ft_strnew(size_t size)
 
 	if (!(str = (char *)ft_memalloc(sizeof(char) * (size + 1))))
 		return (NULL);
+	ft_bzero(str, size);
 	return (str);
 }
