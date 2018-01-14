@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
+/*   By: schmurz <schmurz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/13 02:48:26 by schmurz           #+#    #+#             */
-/*   Updated: 2017/11/14 18:57:03 by dsaadia          ###   ########.fr       */
+/*   Updated: 2018/01/14 20:56:49 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-int				ft_atoi(char const *s)
+long long				ft_atoi(char const *s)
 {
 	int			sign;
 	long long	res;

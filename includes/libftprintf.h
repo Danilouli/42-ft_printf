@@ -6,7 +6,7 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/13 18:38:26 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/01/11 17:45:10 by dsaadia          ###   ########.fr       */
+/*   Updated: 2018/01/14 20:56:47 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int					ft_issign(int c);
 size_t				ft_strlen(const char *s);
 int					ft_isupper(int c);
 int					ft_islower(int c);
-int					ft_atoi(char const *s);
+long long		ft_atoi(char const *s);
 void				ft_striteri(char *s, void (*f)(unsigned int, char*));
 void				ft_striter(char *s, void (*f)(char*));
 int					ft_strcmp(const char *s1, const char *s2);

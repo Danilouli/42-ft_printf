@@ -6,7 +6,7 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/23 17:29:22 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/01/14 15:37:05 by dsaadia          ###   ########.fr       */
+/*   Updated: 2018/01/14 21:21:05 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,21 +39,12 @@ int is_printf_arg(const char *format, char *info)
 	str++;
 	while (*str && ++c)
 	{
-		if (!is_printf_flag(*str) && !is_printf_conversion(*str) && *str != '%')
-		{
-			*info = 'e';
+		if (!is_printf_flag(*str) && !is_printf_conversion(*str) && *str != '%' && (*info = 'e'))
 			return (-1);
-		}
-		if (*str == '%')
-		{
-			*info = '%';
+		else if (*str == '%' && (*info = '%'))
 			return (c);
-		}
-		else if (is_printf_conversion(*str))
-		{
-			*info = 'c';
+		else if (is_printf_conversion(*str) && (*info = 'c'))
 			return (c);
-		}
 		str++;
 	}
 	return (-1);
@@ -62,31 +53,19 @@ int is_printf_arg(const char *format, char *info)
 int count_printf_args(const char *form)
 {
 	int j;
-	int c;
 	int p;
 	char infos;
-
 	t_pfargs pfargs;
 
 	j = 0;
-	c = 1;
 	p = 0;
 	while (form[j])
 	{
 		p = is_printf_arg(&(form[j]), &infos);
-		if (p > 0 && infos == 'c')
+		if (p > 0 && (infos == 'c' || infos == '%'))
 		{
 			pfargs.value = ft_strsub(form, j, p + 1);
-			pfargs.type = form[j + p];
-			pfargs.index = j;
-			pfargs.len = ft_strlen(pfargs.value);
-			ft_lstadd(&g_pfargs, ft_lstnew((&pfargs), sizeof(pfargs)));
-			j = j + p + 1;
-		}
-		else if (p > 0 && infos == '%')
-		{
-			pfargs.value = ft_strsub(form, j, p + 1);
-			pfargs.type = '%';
+			pfargs.type = (infos == 'c') ? form[j + p] : '%';
 			pfargs.index = j;
 			pfargs.len = ft_strlen(pfargs.value);
 			ft_lstadd(&g_pfargs, ft_lstnew((&pfargs), sizeof(pfargs)));

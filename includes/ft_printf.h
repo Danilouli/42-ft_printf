@@ -6,7 +6,7 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/23 16:50:39 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/01/14 16:44:43 by dsaadia          ###   ########.fr       */
+/*   Updated: 2018/01/14 21:50:28 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ char *strconv(char* form, va_list ap, int *len);
 int no_unallowed_flag(char allowed_flags[5], char *form);
 int get_width(char *form);
 char* get_flags(char *form);
-char *format_numeric(char *flags, char *snum, int width, long long int val);
+char *format_numeric(char *flags, char *snum, int width, int *lenk);
+void cast_numeric(long long *val, char *flags);
 
 t_list *g_pfargs;
 
