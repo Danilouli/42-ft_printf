@@ -6,7 +6,7 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/21 17:23:19 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/01/14 21:51:40 by dsaadia          ###   ########.fr       */
+/*   Updated: 2018/01/16 16:42:21 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,8 @@ int	main(int argc, char **argv)
 	//char allowed_flags[5] = "+-0 z";
 	if (argc < 2)
 		return (0);
-	ret = ft_fprintf(0, argv[1], 700000, "yu");
-	// rut = format_numeric("","7",0);
+	ret = ft_fprintf(0, argv[1], 7);
+	// rut = add_prec_to_snum("","7");
 	ft_putchar('\n');
 	ft_putstr("ret->");
 	if(ret)

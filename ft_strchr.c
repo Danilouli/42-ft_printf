@@ -6,7 +6,7 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/19 14:12:29 by dsaadia           #+#    #+#             */
-/*   Updated: 2017/12/19 14:12:30 by dsaadia          ###   ########.fr       */
+/*   Updated: 2018/01/16 16:42:30 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 char	*ft_strchr(const char *s, int c)
 {
+	if(!s)
+		return (NULL);
 	while (*s != (char)c && *s != '\0')
 		s++;
 	if (*s == (char)c)

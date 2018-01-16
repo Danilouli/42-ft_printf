@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_converters.c                             :+:      :+:    :+:   */
+/*   printf_converters.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 17:13:13 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/01/14 21:52:56 by dsaadia          ###   ########.fr       */
+/*   Updated: 2018/01/16 16:42:59 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 	#include "ft_printf.h"
-	#include "stdio.h"
+	#include <stdio.h>
 
 	int no_unallowed_flag(char allowed_flags[], char *form)
 	{
@@ -35,6 +35,42 @@
 		return (0);
 	}
 
+	int get_prec(char *form)
+	{
+		while (*form && *form != '.')
+			form++;
+		if (*form == '.')
+			return ((ft_atoi(form + 1) == 0) ? 1 : ft_atoi(form + 1));
+		return (0);
+	}
+
+	char *add_prec_to_snum(char *form, char *snum)
+	{
+		int prec;
+		size_t i;
+		size_t zer_to_add;
+		char *ret;
+
+		i = 0;
+		if ((prec = get_prec(form)) < 2)
+			return (snum);
+		zer_to_add = prec - ft_strlen(snum);
+		if(!(ret = ft_strnew(zer_to_add + ft_strlen(snum))))
+			return (0);
+		while (i < zer_to_add)
+		{
+			ret[i] = '0';
+			i++;
+		}
+		while (i < (zer_to_add + ft_strlen(snum)))
+		{
+			ret[i] = snum[i - zer_to_add];
+			i++;
+		}
+		ret[i] = 0;
+		return (ret);
+	}
+
 	char* get_flags(char *form)
 	{
 		int ct;
@@ -51,7 +87,7 @@
 		}
 		if (ct)
 			return (ft_strsub(form, 0, ct));
-		return (0);
+		return ("");
 	}
 
 	char *perconv(char* form, va_list ap, int *len) {
@@ -64,19 +100,21 @@
 
 	char *intconv(char* form, va_list ap, int *len) {
 		char *snum;
-		char allowed_flags[] = "+-0 hljz";
+		char allowed_flags[] = "+-0. hljz";
 		char *flags;
 		int width;
 		long long val;
 
+		// printf("---form-->%s\n", form);
 		val = va_arg(ap, long long);
 		if (!no_unallowed_flag(allowed_flags, form))
 			return (0);
 		flags = get_flags(form);
 		width = get_width(form);
 		cast_numeric(&val, flags);
-		snum = ft_itoa(val);
-		return (format_numeric(flags, snum, width, len));
+		if (!(snum = add_prec_to_snum(form ,ft_itoa(val))))
+			return (0);
+		return (format_numeric(form, snum, width, len));
 	}
 
 	char *charconv(char* form, va_list ap, int *len) {
