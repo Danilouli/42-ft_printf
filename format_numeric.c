@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_format_numeric.c                                :+:      :+:    :+:   */
+/*   format_numeric.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/14 19:21:48 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/01/14 21:49:43 by dsaadia          ###   ########.fr       */
+/*   Updated: 2018/01/16 14:12:17 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,18 +89,22 @@ char *format_numeric(char *flags, char *snum, int width, int *lenk)
 
 void cast_numeric(long long *val, char *flags)
 {
-	if (ft_strstr(flags, "hh"))
-		*val = (char)(*val);
-	else if (ft_strchr(flags, 'h'))
-		*val = (short)(*val);
-	else if (ft_strstr(flags, "ll"))
-		*val = (long long)(*val);
-	else if (ft_strchr(flags, 'l'))
-		*val = (long)(*val);
-	else if (ft_strchr(flags, 'j'))
-		*val = (intmax_t)(*val);
-	else if (ft_strchr(flags, 'z'))
-		*val = (size_t)(*val);
+	if(flags) {
+		if (ft_strstr(flags, "hh"))
+			*val = (char)(*val);
+		else if (ft_strchr(flags, 'h'))
+			*val = (short)(*val);
+		else if (ft_strstr(flags, "ll"))
+			*val = (long long)(*val);
+		else if (ft_strchr(flags, 'l'))
+			*val = (long)(*val);
+		else if (ft_strchr(flags, 'j'))
+			*val = (intmax_t)(*val);
+		else if (ft_strchr(flags, 'z'))
+			*val = (size_t)(*val);
+		else
+			*val = (int)(*val);
+	}
 	else
 		*val = (int)(*val);
 	return;
