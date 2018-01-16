@@ -6,33 +6,27 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/13 15:41:52 by dsaadia           #+#    #+#             */
-/*   Updated: 2017/11/13 19:23:46 by dsaadia          ###   ########.fr       */
+/*   Updated: 2018/01/16 18:59:46 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
+#include <stdio.h>
+
 
 char	*ft_create_base(int b)
 {
 	char	*base;
 	int		i;
 
-	i = -1;
-	if (0 == (base = (char*)malloc(b + 1)))
-		return (0);
-	if (b <= 10)
+	i = 0;
+	if (!(base = ft_strnew(b)))
+	return (0);
+	while (i < b)
 	{
-		while (++i < b)
-			base[i] = i + '0';
-		base[i] = 0;
+		base[i] = (b > 10 && i >= 10) ? ('A' + i - 10) : (i + '0');
+		i++;
 	}
-	if (b > 10)
-	{
-		while (++i < 10)
-			base[i] = i + '0';
-		while (++i < b)
-			base[i] = 'A' + i - 10;
-		base[i] = 0;
-	}
+	base[i] = 0;
 	return (base);
 }

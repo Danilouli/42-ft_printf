@@ -6,7 +6,7 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/13 13:52:25 by dsaadia           #+#    #+#             */
-/*   Updated: 2017/11/14 20:09:47 by dsaadia          ###   ########.fr       */
+/*   Updated: 2018/01/16 18:16:06 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static	int	ft_ct(int n)
 	return (ct);
 }
 
-char		*ft_itoa(int n)
+char		*ft_itoa(long long n)
 {
 	char	*str;
 	int		i;
@@ -36,8 +36,8 @@ char		*ft_itoa(int n)
 	i = 1;
 	if (!(str = ft_strnew(ct)))
 		return (NULL);
-	if (n == -2147483648)
-		return (ft_strdup("-2147483648"));
+	if (n == -9223372036854775807)
+		return (ft_strdup("-9223372036854775807"));
 	else if (n < 0)
 	{
 		str[0] = '-';

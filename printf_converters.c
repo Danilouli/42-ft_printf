@@ -6,7 +6,7 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 17:13:13 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/01/16 16:42:59 by dsaadia          ###   ########.fr       */
+/*   Updated: 2018/01/16 19:17:28 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 
 	int get_width(char *form)
 	{
-		while(*form && !(ft_isdigit(*form) && *form != '0'))
+		while(*form && !(ft_isdigit(*form) && *form != '0') && *form != 'b' && *form != 'B')
 			form++;
 		if (ft_isdigit(*form) && *form != '0')
 			return (ft_atoi(form));
@@ -71,7 +71,7 @@
 		return (ret);
 	}
 
-	char* get_flags(char *form)
+	char *get_flags(char *form)
 	{
 		int ct;
 
@@ -90,6 +90,25 @@
 		return ("");
 	}
 
+	int get_base(char *form)
+	{
+		while (*form && *form != 'b' && *form != 'B' && *form != 'o' && *form != 'O'
+			&& *form != 'x' && *form != 'X')
+			form++;
+		if (*form == 'o' || *form == 'O')
+			return (8);
+		if (*form == 'x' || *form == 'X')
+			return (16);
+		if (*form == 'b' || *form == 'B')
+		{
+			if(!ft_isdigit(*(form + 1)) || *(form + 1) == '0')
+				return (10);
+			else
+				return (ft_atoi(form + 1));
+		}
+		return (10);
+	}
+
 	char *perconv(char* form, va_list ap, int *len) {
 		(void)ap;
 		(void)form;
@@ -98,21 +117,20 @@
 		return ("%");
 	}
 
-	char *intconv(char* form, va_list ap, int *len) {
+	char *numconv(char* form, va_list ap, int *len) {
 		char *snum;
-		char allowed_flags[] = "+-0. hljz";
+		char allowed_flags[] = "+-0. hljzb";
 		char *flags;
 		int width;
 		long long val;
 
-		// printf("---form-->%s\n", form);
 		val = va_arg(ap, long long);
 		if (!no_unallowed_flag(allowed_flags, form))
 			return (0);
 		flags = get_flags(form);
 		width = get_width(form);
 		cast_numeric(&val, flags);
-		if (!(snum = add_prec_to_snum(form ,ft_itoa(val))))
+		if (!(snum = add_prec_to_snum(form ,ft_itoa_base(val, get_base(form)))))
 			return (0);
 		return (format_numeric(form, snum, width, len));
 	}

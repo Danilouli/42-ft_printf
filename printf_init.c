@@ -6,7 +6,7 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/23 17:29:22 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/01/16 16:42:52 by dsaadia          ###   ########.fr       */
+/*   Updated: 2018/01/16 19:14:42 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 int is_printf_flag(char c)
 {
-	char flags[] = "#0-+ .hljz*$L'123456789";
+	char flags[] = "#0-+ .hljz*$Lb'123456789";
 	return (ft_strchr(flags, c) != 0);
 }
 

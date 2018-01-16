@@ -6,7 +6,7 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/13 18:38:26 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/01/14 20:56:47 by dsaadia          ###   ########.fr       */
+/*   Updated: 2018/01/16 18:16:04 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,8 @@ void				ft_putstr_fd(char const *s, int fd);
 void				ft_putendl_fd(char const *s, int fd);
 void				ft_putnbr_fd(int n, int fd);
 char				**ft_strsplit(char const *s, char c);
-char				*ft_itoa(int n);
-char				*ft_itoa_base(int value, int base);
+char				*ft_itoa(long long n);
+char				*ft_itoa_base(long long value, int base);
 void				ft_astrrev(char **str);
 char				*ft_create_base(int b);
 void				ft_lstadd(t_list **alst, t_list *new);
