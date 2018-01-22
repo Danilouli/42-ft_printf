@@ -6,7 +6,7 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/13 18:38:26 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/01/16 18:16:04 by dsaadia          ###   ########.fr       */
+/*   Updated: 2018/01/22 17:30:53 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,9 @@ void				ft_putendl_fd(char const *s, int fd);
 void				ft_putnbr_fd(int n, int fd);
 char				**ft_strsplit(char const *s, char c);
 char				*ft_itoa(long long n);
-char				*ft_itoa_base(long long value, int base);
+char		*ft_itoa_base(long long value, int base, int majmin);
 void				ft_astrrev(char **str);
-char				*ft_create_base(int b);
+char				*ft_create_base(int b, int ismaj);
 void				ft_lstadd(t_list **alst, t_list *new);
 t_list				*ft_lstnew(void const *content, size_t content_size);
 size_t				ft_lstlen(t_list *lst);
@@ -88,7 +88,6 @@ void				ft_lstdel(t_list **alst, void (*del)(void*, size_t));
 void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 char				*ft_strrev(char *str);
-char				*ft_create_base(int b);
 size_t				ft_strlcat(char *dst, const char *src, size_t size);
 char				*ft_strnstr(const char *str, const char *to_find, size_t n);
 char				*ft_strstr(const char *str, const char *to_find);
@@ -98,6 +97,17 @@ void 				ft_lstreverse(t_list **beg_lst);
 int					ft_fprintf(int fd, const char *format, ...);
 int					ft_printf(const char *format, ...);
 char				*ft_itos(int nb);
+void	ft_putwchar_fd(wchar_t c, int fd);
+void	ft_putwchar(wchar_t chr);
+void	ft_putwstr_fd(wchar_t const *s, int fd);
+void	ft_putwstr(wchar_t const *s);
+void	ft_putwendl_fd(wchar_t const *s, int fd);
+void	ft_putwendl(wchar_t const *s);
+wchar_t *ft_itows(int nb);
+wchar_t	*ft_wstrnew(size_t size);
+size_t	ft_wstrlen(const wchar_t *s);
+wchar_t		*ft_wstrdup(wchar_t const *src);
 void				ft_troll(void);
+int ft_max(int a, int b);
 
 #endif

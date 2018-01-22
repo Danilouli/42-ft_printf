@@ -1,34 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_create_base.c                                   :+:      :+:    :+:   */
+/*   ft_putwendl.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/13 15:41:52 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/01/22 17:32:59 by dsaadia          ###   ########.fr       */
+/*   Created: 2018/01/22 13:22:21 by dsaadia           #+#    #+#             */
+/*   Updated: 2018/01/22 13:29:14 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
-#include <stdio.h>
 
-
-char	*ft_create_base(int b, int ismaj)
+void	ft_putwendl(wchar_t const *s)
 {
-	char	*base;
-	int		i;
-	char beginalpha;
-
-	beginalpha = (ismaj) ? 'A' : 'a';
-	i = 0;
-	if (!(base = ft_strnew(b)))
-	return (0);
-	while (i < b)
-	{
-		base[i] = (b > 10 && i >= 10) ? (beginalpha + i - 10) : (i + '0');
-		i++;
-	}
-	base[i] = 0;
-	return (base);
+	ft_putwendl_fd(s, 0);
 }

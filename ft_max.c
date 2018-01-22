@@ -1,34 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_create_base.c                                   :+:      :+:    :+:   */
+/*   ft_max.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/13 15:41:52 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/01/22 17:32:59 by dsaadia          ###   ########.fr       */
+/*   Created: 2018/01/22 14:49:41 by dsaadia           #+#    #+#             */
+/*   Updated: 2018/01/22 14:50:05 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
-#include <stdio.h>
-
-
-char	*ft_create_base(int b, int ismaj)
+int ft_max(int a, int b)
 {
-	char	*base;
-	int		i;
-	char beginalpha;
-
-	beginalpha = (ismaj) ? 'A' : 'a';
-	i = 0;
-	if (!(base = ft_strnew(b)))
-	return (0);
-	while (i < b)
-	{
-		base[i] = (b > 10 && i >= 10) ? (beginalpha + i - 10) : (i + '0');
-		i++;
-	}
-	base[i] = 0;
-	return (base);
+	return (a > b) ? a : b;
 }

@@ -1,34 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_create_base.c                                   :+:      :+:    :+:   */
+/*   ft_wstrlen.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/13 15:41:52 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/01/22 17:32:59 by dsaadia          ###   ########.fr       */
+/*   Created: 2018/01/22 13:52:48 by dsaadia           #+#    #+#             */
+/*   Updated: 2018/01/22 13:52:58 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
-#include <stdio.h>
 
-
-char	*ft_create_base(int b, int ismaj)
+size_t	ft_wstrlen(const wchar_t *s)
 {
-	char	*base;
-	int		i;
-	char beginalpha;
+	size_t	i;
 
-	beginalpha = (ismaj) ? 'A' : 'a';
 	i = 0;
-	if (!(base = ft_strnew(b)))
-	return (0);
-	while (i < b)
-	{
-		base[i] = (b > 10 && i >= 10) ? (beginalpha + i - 10) : (i + '0');
+	while (s[i])
 		i++;
-	}
-	base[i] = 0;
-	return (base);
+	return (i);
 }

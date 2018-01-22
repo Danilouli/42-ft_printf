@@ -6,7 +6,7 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/23 17:29:22 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/01/16 19:14:42 by dsaadia          ###   ########.fr       */
+/*   Updated: 2018/01/22 17:32:44 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@
 
 int is_printf_flag(char c)
 {
-	char flags[] = "#0-+ .hljz*$Lb'123456789";
+	char flags[] = "#0-+ .hljzLv123456789";
 	return (ft_strchr(flags, c) != 0);
 }
 
 int is_printf_conversion(char c)
 {
-	char conversions[] = "sSpdDioOuUxXcCeEfFgGaAnm";
+	char conversions[] = "sSpdDioOuUxXbBcC";
 	return (ft_strchr(conversions, c) != 0);
 }
 

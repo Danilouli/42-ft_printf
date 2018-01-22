@@ -6,16 +6,16 @@
 /*   By: exam <exam@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/28 14:24:00 by exam              #+#    #+#             */
-/*   Updated: 2018/01/16 19:00:44 by dsaadia          ###   ########.fr       */
+/*   Updated: 2018/01/22 17:32:56 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 #include <stdio.h>
 
-static int	gmi(int nb, int base, int sign)
+static long long	gmi(int nb, int base, int sign)
 {
-	int		i;
+	long long		i;
 
 	i = 0;
 	if (nb == 0)
@@ -30,12 +30,12 @@ static int	gmi(int nb, int base, int sign)
 	return (i);
 }
 
-char		*ft_itoa_base(long long value, int base)
+char		*ft_itoa_base(long long value, int base, int ismaj)
 {
 	char	*b_string;
 	char	*ret;
-	int		nb;
-	int		i;
+	long long		nb;
+	long long		i;
 
 	i = 0;
 	nb = (value < 0) ? -value : value;
@@ -45,7 +45,7 @@ char		*ft_itoa_base(long long value, int base)
 		return (ft_strdup("-9223372036854775807"));
 	if (!(ret = (char*)malloc(gmi(nb, base, value < 0) + 1)))
 		return (0);
-	if (!(b_string = ft_create_base(base)))
+	if (!(b_string = ft_create_base(base, ismaj)))
 		return (0);
 	while (nb > 0)
 	{

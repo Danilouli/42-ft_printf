@@ -6,7 +6,7 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/14 19:21:48 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/01/16 18:20:41 by dsaadia          ###   ########.fr       */
+/*   Updated: 2018/01/22 15:48:29 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,14 +97,14 @@ char *format_numeric(char *form, char *snum, int width, int *lenk)
 	return (ret);
 }
 
-void cast_numeric(long long *val, char *flags)
+void cast_numeric(long long *val, char *flags, char *form)
 {
 	if(flags) {
 		if (ft_strstr(flags, "hh"))
 			*val = (char)(*val);
 		else if (ft_strchr(flags, 'h'))
 			*val = (short)(*val);
-		else if (ft_strstr(flags, "ll"))
+		else if (ft_strstr(flags, "ll") || ft_strchr(form, 'p'))
 			*val = (long long)(*val);
 		else if (ft_strchr(flags, 'l'))
 			*val = (long)(*val);

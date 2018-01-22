@@ -1,34 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_create_base.c                                   :+:      :+:    :+:   */
+/*   ft_wstrnew.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/13 15:41:52 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/01/22 17:32:59 by dsaadia          ###   ########.fr       */
+/*   Created: 2018/01/22 13:47:06 by dsaadia           #+#    #+#             */
+/*   Updated: 2018/01/22 13:47:46 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
-#include <stdio.h>
 
-
-char	*ft_create_base(int b, int ismaj)
+wchar_t	*ft_wstrnew(size_t size)
 {
-	char	*base;
-	int		i;
-	char beginalpha;
+	wchar_t	*wstr;
 
-	beginalpha = (ismaj) ? 'A' : 'a';
-	i = 0;
-	if (!(base = ft_strnew(b)))
-	return (0);
-	while (i < b)
-	{
-		base[i] = (b > 10 && i >= 10) ? (beginalpha + i - 10) : (i + '0');
-		i++;
-	}
-	base[i] = 0;
-	return (base);
+	if (!(wstr = (wchar_t *)ft_memalloc(sizeof(wchar_t) * (size + 1))))
+		return (NULL);
+	ft_bzero(wstr, size);
+	return (wstr);
 }
