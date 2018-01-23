@@ -6,7 +6,7 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/13 18:38:26 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/01/22 17:30:53 by dsaadia          ###   ########.fr       */
+/*   Updated: 2018/01/23 14:18:03 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,20 +94,20 @@ char				*ft_strstr(const char *str, const char *to_find);
 void				*ft_memccpy(void *dest, const void *src, int c, size_t n);
 int					ft_isspacer(char c);
 void 				ft_lstreverse(t_list **beg_lst);
-int					ft_fprintf(int fd, const char *format, ...);
-int					ft_printf(const char *format, ...);
 char				*ft_itos(int nb);
-void	ft_putwchar_fd(wchar_t c, int fd);
-void	ft_putwchar(wchar_t chr);
-void	ft_putwstr_fd(wchar_t const *s, int fd);
-void	ft_putwstr(wchar_t const *s);
-void	ft_putwendl_fd(wchar_t const *s, int fd);
-void	ft_putwendl(wchar_t const *s);
-wchar_t *ft_itows(int nb);
-wchar_t	*ft_wstrnew(size_t size);
-size_t	ft_wstrlen(const wchar_t *s);
-wchar_t		*ft_wstrdup(wchar_t const *src);
+void				ft_putwchar_fd(wchar_t c, int fd);
+void				ft_putwchar(wchar_t chr);
+void				ft_putwstr_fd(wchar_t const *s, int fd);
+void				ft_putwstr(wchar_t const *s);
+void				ft_putwendl_fd(wchar_t const *s, int fd);
+void				ft_putwendl(wchar_t const *s);
+wchar_t 		*ft_itows(int nb);
+wchar_t			*ft_wstrnew(size_t size);
+size_t			ft_wstrlen(const wchar_t *s);
+wchar_t			*ft_wstrdup(wchar_t const *src);
+int 				ft_max(int a, int b);
+int 				ft_fprintf(int fd, const char *format, ...);
+int 				ft_printf(const char *format, ...);
 void				ft_troll(void);
-int ft_max(int a, int b);
 
 #endif

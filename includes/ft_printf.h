@@ -6,7 +6,7 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/23 16:50:39 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/01/23 12:44:39 by dsaadia          ###   ########.fr       */
+/*   Updated: 2018/01/23 13:58:16 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,12 @@ char *format_numeric(char *flags, char *snum, int width, int *lenk);
 void cast_numeric(long long *val, char *flags, char *form);
 int get_prec(char *form);
 char* get_flags(char *form);
+int get_base(char *form);
 char *add_prec_to_snum(char *form, char *snum);
+int ft_fprintf(int fd, const char *format, ...);
+int ft_printf(const char *format, ...);
+char *format_string(char *form, char *str);
+wchar_t *format_wstring(char *form, wchar_t *str);
 
 t_list *g_pfargs;
 

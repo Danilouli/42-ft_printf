@@ -6,7 +6,7 @@
 #    By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/13 16:37:57 by dsaadia           #+#    #+#              #
-#    Updated: 2018/01/22 14:50:51 by dsaadia          ###   ########.fr        #
+#    Updated: 2018/01/23 14:18:36 by dsaadia          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,10 +31,12 @@ SRCFILES = ft_astrrev.c ft_memccpy.c ft_striteri.c ft_isspacer.c\
 			ft_strmapi.c ft_strncat.c ft_strncmp.c ft_strncpy.c ft_strnequ.c \
 			ft_strnew.c ft_strnstr.c ft_strrchr.c ft_strrev.c ft_strsplit.c \
 			ft_strstr.c ft_strsub.c ft_strtrim.c ft_tolower.c ft_toupper.c \
-			ft_strndup.c ft_fprintf.c ft_lstreverse.c ft_itos.c ft_itoa_base.c \
+			ft_strndup.c ft_lstreverse.c ft_itos.c ft_itoa_base.c \
 			ft_putwchar_fd.c ft_putwchar.c ft_putwstr_fd.c ft_putwstr.c \
 			ft_putwendl_fd.c ft_putwendl.c ft_itows.c ft_wstrnew.c ft_wstrlen.c \
-			ft_wstrdup.c ft_max.c
+			ft_wstrdup.c ft_max.c ft_printf.c \
+			printf_init.c printf_converters_numeric.c printf_converters_string.c \
+			format_numeric.c format_numeric_help.c format_basic.c format_string.c
 SRC = $(subst ${space}, $(SRCDIR), $(SRCFILES))
 OBJ = $(SRCFILES:.c=.o)
 
