@@ -6,7 +6,7 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/21 17:23:19 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/01/23 16:36:51 by dsaadia          ###   ########.fr       */
+/*   Updated: 2018/01/23 17:53:57 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ int			ft_printf(const char *format, ...)
 	formlen = 0;
 	if (!count_printf_args(format))
 		return (-1);
-	formlen = ft_do_printf_loop(0, format, ap);
+	formlen = ft_do_printf_loop(1, format, ap);
 	va_end(ap);
 	return (formlen);
 }

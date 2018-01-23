@@ -6,7 +6,7 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 14:00:53 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/01/23 17:00:14 by dsaadia          ###   ########.fr       */
+/*   Updated: 2018/01/23 18:21:50 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ wchar_t	*numconv(char *form, va_list ap, int *len)
 	flags = get_flags(form);
 	width = get_width(form);
 	cast_numeric(&val, form);
-	if (!(snum = add_prec_to_snum(form, ft_itoa_base(val,
-		get_base(form), ft_isupper(form[ft_strlen(form) - 1])))))
+	if (!(snum = add_prec_to_snum(form, pf_itoa_base(val,
+		get_base(form), form))))
 		return (0);
 	if (ft_strchr(flags, '#') || ft_strchr(form, 'p'))
 	{

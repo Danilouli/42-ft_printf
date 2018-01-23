@@ -6,7 +6,7 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 13:16:49 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/01/22 13:29:17 by dsaadia          ###   ########.fr       */
+/*   Updated: 2018/01/23 17:55:59 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 void	ft_putwchar(wchar_t chr)
 {
-	ft_putwchar_fd(chr, 0);
+	ft_putwchar_fd(chr, 1);
 }

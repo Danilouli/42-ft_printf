@@ -6,7 +6,7 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 13:22:21 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/01/22 13:29:14 by dsaadia          ###   ########.fr       */
+/*   Updated: 2018/01/23 17:55:55 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 void	ft_putwendl(wchar_t const *s)
 {
-	ft_putwendl_fd(s, 0);
+	ft_putwendl_fd(s, 1);
 }

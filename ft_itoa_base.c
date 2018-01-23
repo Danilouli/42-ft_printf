@@ -6,7 +6,7 @@
 /*   By: exam <exam@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/28 14:24:00 by exam              #+#    #+#             */
-/*   Updated: 2018/01/23 16:02:05 by dsaadia          ###   ########.fr       */
+/*   Updated: 2018/01/23 18:18:17 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,14 @@ char				*ft_itoa_base(long long value, int base, int ismaj)
 {
 	char		*b_string;
 	char		*ret;
-	long long	nb;
+	unsigned long long	nb;
 	long long	i;
 
 	i = 0;
-	nb = (value < 0) ? -value : value;
+	nb = (value < 0) ? (unsigned)value : value;
 	if (!value)
 		return (ft_strdup("0"));
-	if (value == -9223372036854775807)
+	if (value == -9223372036854775807 && base == 10)
 		return (ft_strdup("-9223372036854775807"));
 	if (!(ret = (char*)malloc(gmi(nb, base, value < 0) + 1)))
 		return (0);

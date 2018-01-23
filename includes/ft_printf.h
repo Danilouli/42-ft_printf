@@ -6,7 +6,7 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/23 16:50:39 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/01/23 17:29:23 by dsaadia          ###   ########.fr       */
+/*   Updated: 2018/01/23 18:20:11 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int					ft_fprintf(int fd, const char *format, ...);
 int					ft_printf(const char *format, ...);
 char				*format_string(char *form, char *str);
 wchar_t				*format_wstring(char *form, wchar_t *str);
+char					*pf_itoa_base(long long value, int base, char *form);
 
 t_list				*g_pfargs;
 
