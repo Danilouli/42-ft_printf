@@ -6,11 +6,11 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 14:49:41 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/01/22 14:50:05 by dsaadia          ###   ########.fr       */
+/*   Updated: 2018/01/23 16:05:01 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int ft_max(int a, int b)
+int	ft_max(int a, int b)
 {
-	return (a > b) ? a : b;
+	return ((a > b) ? a : b);
 }

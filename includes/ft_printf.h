@@ -6,7 +6,7 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/23 16:50:39 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/01/23 13:58:16 by dsaadia          ###   ########.fr       */
+/*   Updated: 2018/01/23 17:29:23 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,37 +21,38 @@ typedef struct		s_pfargs
 	char			*value;
 	char			type;
 	int				len;
-	int 			index;
+	int				index;
 }					t_pfargs;
 
 typedef struct		s_conv
 {
-	char sign;
-	wchar_t* (*convertor)(char*, va_list, int*);
-}									t_conv;
+	char			sign;
+	wchar_t			*(*convertor)(char*, va_list, int*);
+}					t_conv;
 
-int count_printf_args(const char *form);
-int is_printf_arg(const char *pt, char *info);
-wchar_t *perconv(char* form, va_list ap, int *len);
-wchar_t *numconv(char* form, va_list ap, int *len);
-wchar_t *charconv(char* form, va_list ap, int *len);
-wchar_t *strconv(char* form, va_list ap, int *len);
-wchar_t *wcharconv(char *form, va_list ap, int *len);
-wchar_t *wstrconv(char *form, va_list ap, int *len);
-int no_unallowed_flag(char allowed_flags[5], char *form);
-int get_width(char *form);
-char* get_flags(char *form);
-char *format_numeric(char *flags, char *snum, int width, int *lenk);
-void cast_numeric(long long *val, char *flags, char *form);
-int get_prec(char *form);
-char* get_flags(char *form);
-int get_base(char *form);
-char *add_prec_to_snum(char *form, char *snum);
-int ft_fprintf(int fd, const char *format, ...);
-int ft_printf(const char *format, ...);
-char *format_string(char *form, char *str);
-wchar_t *format_wstring(char *form, wchar_t *str);
+int					count_printf_args(const char *form);
+int					is_printf_arg(const char *pt, char *info);
+wchar_t				*perconv(char *form, va_list ap, int *len);
+wchar_t				*numconv(char *form, va_list ap, int *len);
+wchar_t				*charconv(char *form, va_list ap, int *len);
+wchar_t				*strconv(char *form, va_list ap, int *len);
+wchar_t				*wcharconv(char *form, va_list ap, int *len);
+wchar_t				*wstrconv(char *form, va_list ap, int *len);
+int					no_unallowed_flag(char allowed_flags[5], char *form);
+int					get_width(char *form);
+char				*get_flags(char *form);
+char				*format_numeric(char *flags, char *snum,
+					int width, int *lenk);
+void				cast_numeric(long long *val, char *form);
+int					get_prec(char *form);
+char				*get_flags(char *form);
+int					get_base(char *form);
+char				*add_prec_to_snum(char *form, char *snum);
+int					ft_fprintf(int fd, const char *format, ...);
+int					ft_printf(const char *format, ...);
+char				*format_string(char *form, char *str);
+wchar_t				*format_wstring(char *form, wchar_t *str);
 
-t_list *g_pfargs;
+t_list				*g_pfargs;
 
 #endif

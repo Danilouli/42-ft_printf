@@ -6,12 +6,11 @@
 /*   By: exam <exam@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/28 14:24:00 by exam              #+#    #+#             */
-/*   Updated: 2018/01/22 17:32:56 by dsaadia          ###   ########.fr       */
+/*   Updated: 2018/01/23 16:02:05 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
-#include <stdio.h>
 
 static long long	gmi(int nb, int base, int sign)
 {
@@ -30,12 +29,12 @@ static long long	gmi(int nb, int base, int sign)
 	return (i);
 }
 
-char		*ft_itoa_base(long long value, int base, int ismaj)
+char				*ft_itoa_base(long long value, int base, int ismaj)
 {
-	char	*b_string;
-	char	*ret;
-	long long		nb;
-	long long		i;
+	char		*b_string;
+	char		*ret;
+	long long	nb;
+	long long	i;
 
 	i = 0;
 	nb = (value < 0) ? -value : value;

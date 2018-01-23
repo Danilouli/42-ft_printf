@@ -6,31 +6,31 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/14 19:21:48 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/01/23 12:44:56 by dsaadia          ###   ########.fr       */
+/*   Updated: 2018/01/23 15:15:43 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdio.h>
 
-static char *helper_ws_flag(char *snum, int len)
+static char	*helper_ws_flag(char *snum, int len)
 {
 	char *formatted;
 
 	if (!(formatted = ft_strnew(len)))
 		return (0);
 	formatted[0] = ' ';
-	formatted = ft_strcat(formatted,snum);
+	formatted = ft_strcat(formatted, snum);
 	return (formatted);
 }
 
-static char *helper_minus_flag(char *form, char *snum, int len, int numlen)
+static char	*helper_minus_flag(char *form, char *snum, int len, int numlen)
 {
-	char *formatted;
-	int ct;
-	int val;
-	int i;
-	char *flags;
+	char	*formatted;
+	int		ct;
+	int		val;
+	int		i;
+	char	*flags;
 
 	flags = get_flags(form);
 	ct = 0;
@@ -48,41 +48,41 @@ static char *helper_minus_flag(char *form, char *snum, int len, int numlen)
 	return (formatted);
 }
 
-static char *helper_others_flag(char *form, char *snum, int len, int numlen)
+static char	*helper_others_flag(char *form, char *snum, int len, int nl)
 {
-	char *formatted;
-	int ct;
-	int val;
-	int i;
-	char *flags;
+	char	*r;
+	int		ct;
+	int		val;
+	int		i;
+	char	*fg;
 
-	flags = get_flags(form);
+	fg = get_flags(form);
 	ct = 0;
 	i = 0;
-	val = ft_atoi(snum);
-	if (!(formatted = ft_strnew(len)))
+	if (!(r = ft_strnew(len)))
 		return (0);
-	if (ft_strchr(flags, '+') && val >= 0 && ft_strchr(flags, '0') && !get_prec(form) && ct++ >= 0 && numlen-- >= 0)
-		formatted[0] = '+';
-	while (ct < len - numlen)
-		formatted[ct++] = (ft_strchr(flags, '0') && !get_prec(form)) ? '0' : ' ';
+	if (ft_strchr(fg, '+') && (val = ft_atoi(snum)) >= 0 && ft_strchr(fg, '0')
+		&& !get_prec(form) && ct++ >= 0 && nl-- >= 0)
+		r[0] = '+';
+	while (ct < len - nl)
+		r[ct++] = (ft_strchr(fg, '0') && !get_prec(form)) ? '0' : ' ';
 	while (ct < len)
 	{
-		if ((ct == len - numlen) && (formatted[0] != '+') && ft_strchr(flags, '+') && val >= 0)
-			formatted[ct++] = '+';
+		if ((ct == len - nl) && (r[0] != '+') && ft_strchr(fg, '+') && val >= 0)
+			r[ct++] = '+';
 		else
-			formatted[ct++] = snum[i++];
+			r[ct++] = snum[i++];
 	}
-	formatted[ct] = 0;
-	return (formatted);
+	r[ct] = 0;
+	return (r);
 }
 
-char *format_numeric(char *form, char *snum, int width, int *lenk)
+char		*format_numeric(char *form, char *snum, int width, int *lenk)
 {
-	int numlen;
-	int len;
-	char *ret;
-	char *flags;
+	int		numlen;
+	int		len;
+	char	*ret;
+	char	*flags;
 
 	flags = get_flags(form);
 	numlen = ft_strlen(snum) + (ft_strchr(flags, '+') && ft_atoi(snum) >= 0);
@@ -97,25 +97,26 @@ char *format_numeric(char *form, char *snum, int width, int *lenk)
 	return (ret);
 }
 
-void cast_numeric(long long *val, char *flags, char *form)
+void		cast_numeric(long long *val, char *form)
 {
-	if(flags) {
-		if (ft_strstr(flags, "hh"))
+	if (form)
+	{
+		if (ft_strstr(form, "hh"))
 			*val = (char)(*val);
-		else if (ft_strchr(flags, 'h'))
+		else if (ft_strchr(form, 'h'))
 			*val = (short)(*val);
-		else if (ft_strstr(flags, "ll") || ft_strchr(form, 'p'))
+		else if (ft_strstr(form, "ll") || ft_strchr(form, 'p'))
 			*val = (long long)(*val);
-		else if (ft_strchr(flags, 'l'))
+		else if (ft_strchr(form, 'l'))
 			*val = (long)(*val);
-		else if (ft_strchr(flags, 'j'))
+		else if (ft_strchr(form, 'j'))
 			*val = (intmax_t)(*val);
-		else if (ft_strchr(flags, 'z'))
+		else if (ft_strchr(form, 'z'))
 			*val = (size_t)(*val);
 		else
 			*val = (int)(*val);
 	}
 	else
 		*val = (int)(*val);
-	return;
+	return ;
 }

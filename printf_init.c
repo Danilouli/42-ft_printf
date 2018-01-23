@@ -6,30 +6,27 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/23 17:29:22 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/01/22 17:32:44 by dsaadia          ###   ########.fr       */
+/*   Updated: 2018/01/23 17:15:01 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
 #include "ft_printf.h"
 #include <stdio.h>
 
-int is_printf_flag(char c)
+int				is_printf_flag(char c)
 {
-	char flags[] = "#0-+ .hljzLv123456789";
-	return (ft_strchr(flags, c) != 0);
+	return (ft_strchr("#0-+ .hljzvV123456789", c) != 0);
 }
 
-int is_printf_conversion(char c)
+int				is_printf_conversion(char c)
 {
-	char conversions[] = "sSpdDioOuUxXbBcC";
-	return (ft_strchr(conversions, c) != 0);
+	return (ft_strchr("sSpdDioOuUxXbBcC", c) != 0);
 }
 
-int is_printf_arg(const char *format, char *info)
+int				is_printf_arg(const char *format, char *info)
 {
-	int c;
-	char *str;
+	int		c;
+	char	*str;
 
 	str = (char*)format;
 	c = 0;
@@ -39,7 +36,8 @@ int is_printf_arg(const char *format, char *info)
 	str++;
 	while (*str && ++c)
 	{
-		if (!is_printf_flag(*str) && !is_printf_conversion(*str) && *str != '%' && (*info = 'e'))
+		if (!is_printf_flag(*str) && !is_printf_conversion(*str)
+			&& *str != '%' && (*info = 'e'))
 			return (-1);
 		else if (*str == '%' && (*info = '%'))
 			return (c);
@@ -50,12 +48,23 @@ int is_printf_arg(const char *format, char *info)
 	return (-1);
 }
 
-int count_printf_args(const char *form)
+static t_pfargs	init_pfargs(char *value, char type, int index)
 {
-	int j;
-	int p;
-	char infos;
-	t_pfargs pfargs;
+	t_pfargs	pfargs;
+
+	pfargs.value = value;
+	pfargs.type = type;
+	pfargs.index = index;
+	pfargs.len = ft_strlen(pfargs.value);
+	return (pfargs);
+}
+
+int				count_printf_args(const char *form)
+{
+	int			j;
+	int			p;
+	char		infos;
+	t_pfargs	pfargs;
 
 	j = 0;
 	p = 0;
@@ -64,18 +73,13 @@ int count_printf_args(const char *form)
 		p = is_printf_arg(&(form[j]), &infos);
 		if (p > 0 && (infos == 'c' || infos == '%'))
 		{
-			pfargs.value = ft_strsub(form, j, p + 1);
-			pfargs.type = (infos == 'c') ? form[j + p] : '%';
-			pfargs.index = j;
-			pfargs.len = ft_strlen(pfargs.value);
+			pfargs = init_pfargs(ft_strsub(form, j, p + 1),
+				((infos == 'c') ? form[j + p] : '%'), j);
 			ft_lstadd(&g_pfargs, ft_lstnew((&pfargs), sizeof(pfargs)));
 			j = j + p + 1;
 		}
-		else if (p == -1)
-		{
-			g_pfargs = 0;
+		else if (p == -1 && !(g_pfargs = 0))
 			return (0);
-		}
 		else if (infos == 'l')
 			j++;
 	}
