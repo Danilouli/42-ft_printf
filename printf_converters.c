@@ -6,7 +6,7 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 17:13:13 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/01/22 17:35:42 by dsaadia          ###   ########.fr       */
+/*   Updated: 2018/01/23 12:45:20 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,7 +137,7 @@
 		cast_numeric(&val, flags, form);
 		if (!(snum = add_prec_to_snum(form ,ft_itoa_base(val, get_base(form), ft_isupper(form[ft_strlen(form) - 1])))))
 			return (0);
-		if (ft_strchr(flags, '#'))
+		if (ft_strchr(flags, '#') || ft_strchr(form, 'p'))
 		{
 			if (get_base(form) == 2)
 				snum = ft_strjoin("0b",snum);

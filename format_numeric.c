@@ -6,7 +6,7 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/14 19:21:48 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/01/22 15:48:29 by dsaadia          ###   ########.fr       */
+/*   Updated: 2018/01/23 12:44:56 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ char *format_numeric(char *form, char *snum, int width, int *lenk)
 	numlen = ft_strlen(snum) + (ft_strchr(flags, '+') && ft_atoi(snum) >= 0);
 	len = (width > numlen) ? width : numlen;
 	if (width == 0 && ft_strchr(flags, ' '))
-		ret = helper_ws_flag(snum, len);
+		snum = helper_ws_flag(snum, len);
 	if (ft_strchr(flags, '-'))
 		ret = helper_minus_flag(form, snum, len, numlen);
 	else
