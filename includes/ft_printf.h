@@ -6,7 +6,7 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/23 16:50:39 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/01/24 10:17:35 by schmurz          ###   ########.fr       */
+/*   Updated: 2018/01/24 16:35:09 by schmurz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,9 @@ wchar_t				*format_wstring(char *form, wchar_t *str);
 char					*pf_itoa_base(long long value, int base, char *form);
 int						get_prec(char *form);
 int						get_prec_chieur(char *form, char *snum);
+int deg_octal(char *form);
+int deg_is_octal_conv(char *form);
+int deg_only_space(char *flags);
 
 t_list				*g_pfargs;
 

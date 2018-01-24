@@ -6,7 +6,7 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 14:00:53 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/01/24 10:21:22 by schmurz          ###   ########.fr       */
+/*   Updated: 2018/01/24 19:27:03 by schmurz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ static void helper_snum(char *form, int *len, char **snum)
 	else if (get_base(form) == 2 && !up)
 		*snum = ft_strjoin("0b", *snum);
 	else if (get_base(form) == 8 && up)
-		*snum = ft_strjoin("0O", *snum);
+		*snum = ft_strjoin("0", *snum);
 	else if (get_base(form) == 8 && !up)
-		*snum = ft_strjoin("0o", *snum);
+		*snum = ft_strjoin("0", *snum);
 	else if (get_base(form) == 16 && up)
 		*snum = ft_strjoin("0X", *snum);
 	else if (get_base(form) == 16 && !up)

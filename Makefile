@@ -6,7 +6,7 @@
 #    By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/13 16:37:57 by dsaadia           #+#    #+#              #
-#    Updated: 2018/01/23 18:22:28 by dsaadia          ###   ########.fr        #
+#    Updated: 2018/01/24 15:29:15 by schmurz          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ SRCFILES = ft_astrrev.c ft_memccpy.c ft_striteri.c ft_isspacer.c\
 			ft_wstrdup.c ft_max.c ft_strjoindel.c ft_printf.c \
 			printf_init.c printf_converters_numeric.c printf_converters_string.c \
 			format_numeric.c format_numeric_help.c format_basic.c format_string.c \
-			pf_itoa_base.c
+			pf_itoa_base.c deg_helpers.c
 SRC = $(subst ${space}, $(SRCDIR), $(SRCFILES))
 OBJ = $(SRCFILES:.c=.o)
 

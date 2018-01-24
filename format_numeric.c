@@ -6,14 +6,14 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/14 19:21:48 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/01/24 11:27:53 by schmurz          ###   ########.fr       */
+/*   Updated: 2018/01/24 19:26:54 by schmurz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdio.h>
 
-static char	*helper_ws_flag(char *snum, int len)
+static char	*helper_ws_flag(char *snum, int len, int *lenk)
 {
 	char *formatted;
 
@@ -21,6 +21,7 @@ static char	*helper_ws_flag(char *snum, int len)
 		return (0);
 	formatted[0] = ' ';
 	formatted = ft_strcat(formatted, snum);
+	*lenk = ft_strlen(formatted);
 	return (formatted);
 }
 
@@ -59,11 +60,15 @@ static char	*helper_others_flag(char *form, char *snum, int len, int nl)
 	fg = get_flags(form);
 	ct = 0;
 	i = 0;
+	// printf("FLAGS:%s, %lld, SNUM %s\n",fg,ft_atoi(snum),snum);
 	if (!(r = ft_strnew(len)))
 		return (0);
 	if (ft_strchr(fg, '+') && (val = ft_atoi(snum)) >= 0 && ft_strchr(fg, '0')
 		&& get_prec(form) < 2 && ct++ >= 0 && nl-- >= 0)
 		r[0] = '+';
+	// printf("INFO:%d\n",(val = ft_atoi(snum)) < 0 && (ft_strchr(fg, '0') || ft_strchr(fg, '.')));
+	if ((val = ft_atoi(snum)) < 0 && ft_strchr(fg, '0') && (get_prec(form) < 2) && ct++ >= 0 && nl-- >= 0 && i++ >= 0)
+		r[0] = '-';
 	while (ct < len - nl)
 		r[ct++] = (ft_strchr(fg, '0') && get_prec(form) < 2) ? '0' : ' ';
 	while (ct < len)
@@ -87,20 +92,23 @@ static char* helper_sharp_flag(char *form, char *snum, int len, int nl)
 	fg = get_flags(form);
 	ct = 0;
 	i = 0;
+	if (*snum == 0)
+		return (snum);
 	if (!(r = ft_strnew(len)))
 		return (0);
-	if (ft_strchr(fg, '0') && (i = 2) && ((ct += 2) >= 0) && ((nl -= 2) >= 0))
+	if (ft_strchr(fg, '0') && (i++ >=0) && (ct++ >= 0) && (nl-- >= 0))
 	{
 		r[0] = '0';
-		r[1] = form[ft_strlen(form) - 1];
+		if (!deg_is_octal_conv(form) && ct++ >= 0 && nl-- >= 0 && i++ >= 0)
+		{
+			r[1] = form[ft_strlen(form) - 1];
+			// ct++;
+			// nl--;
+			// i++;
+		}
 	}
 	while (ct < len - nl)
-	{
-		// printf("FLAGS%s\n", fg);
-		// if ((ft_strchr(fg, '0') && get_prec(form) < 2))
-		// 	ft_putchar('Y');
 		r[ct++] = (ft_strchr(fg, '0') && get_prec(form) < 2) ? '0' : ' ';
-	}
 	while (ct < len)
 	{
 		r[ct++] = snum[i++];
@@ -119,14 +127,19 @@ char		*format_numeric(char *form, char *snum, int width, int *lenk)
 	flags = get_flags(form);
 	numlen = ft_strlen(snum) + (ft_strchr(flags, '+') && ft_atoi(snum) >= 0 && get_base(form) == 10);
 	len = (width > numlen) ? width : numlen;
-	if (width == 0 && ft_strchr(flags, ' '))
-		snum = helper_ws_flag(snum, len);
+	ret = snum;
+	if (width == 0 && deg_only_space(flags) && ft_atoi(snum) >= 0)
+	{
+		return (snum = helper_ws_flag(snum, len, lenk));
+	}
 	if (ft_strchr(flags, '-'))
 		ret = helper_minus_flag(form, snum, len, numlen);
 	else if (ft_strchr(flags, '#') && !(ft_strequ(snum,"0") && (ft_strchr(form, 'o') || ft_strchr(form, 'O')) && ft_strchr(flags, '0')))
 		ret = helper_sharp_flag(form, snum, len, numlen);
-	else
+	else if (!deg_only_space(flags) || width)
+	{
 		ret = helper_others_flag(form, snum, len, numlen);
+	}
 	*lenk = ft_strlen(ret);
 	return (ret);
 }

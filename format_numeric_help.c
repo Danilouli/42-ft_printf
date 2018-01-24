@@ -6,7 +6,7 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 13:54:27 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/01/24 11:41:57 by schmurz          ###   ########.fr       */
+/*   Updated: 2018/01/24 19:15:01 by schmurz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,16 @@ int		get_prec_chieur(char *form, char *snum)
 {
 	while (*form && *form != '.')
 		form++;
-	// printf("III-->%c , %lld , %c, %c\n", *form, ft_atoi(form + 1), *snum, *(snum + 1));
-	if (*form == '.' && ft_atoi(form + 1) == 0 && *snum == '0' && !(*(snum + 1)))
-	{
+	if (*form == '.' && ft_atoi(form + 1) == 0 && *(form + 2) != '0'
+		&& *snum == '0' && !(*(snum + 1)))
 		return (0);
-	}
 	if (*form == '.')
-		return ((ft_atoi(form + 1) == 0) ? 1 : ft_atoi(form + 1));
+	{
+		if (ft_atoi(snum) >= 0)
+			return ((ft_atoi(form + 1) == 0) ? 1 : ft_atoi(form + 1));
+		else
+			return ((ft_atoi(form + 1) == 0) ? 1 : (ft_atoi(form + 1) + 1));
+	}
 	return (1);
 }
 
@@ -65,33 +68,25 @@ char	*add_prec_to_snum(char *form, char *snum)
 	int		i;
 	int		zer_to_add;
 	char	*ret;
+	int j;
 
-	i = 0;
+	j = 0;
 	prec = get_prec_chieur(form, snum);
-	// printf("FHUIQHF%d\n", get_prec_chieur(form, snum));
-	// printf("ForF%s\n", form);
-	// printf("qdqfqf%d\n", (!prec && snum[0] == '0' && snum[1] == 0) && !((ft_strchr(form,'o') || ft_strchr(form,'O')) && (ft_strchr(form, '#') || ft_strchr(form, '0'))));
-	// printf("ForF%s\n", snum);
+	// printf("AVANT %s, PREC %d\n", snum, prec);
+	i = 0;
 	if ((prec = get_prec_chieur(form, snum)) < 2 ||
 		(zer_to_add = prec - (int)ft_strlen(snum)) <= 0)
-		{
-			if ((!prec && snum[0] == '0' && snum[1] == 0) && !((ft_strchr(form,'o') || ft_strchr(form,'O')) && ((ft_strchr(form, '#') && ft_strchr(form, '0')) || ft_strchr(form, '#'))))
-			{
-				// ft_putendl("huhu\n");
-				return ("\0");
-			}
-			else
-			{
-				// ft_putendl("hihi\n");
-				// ft_putendl(snum);
-				// ft_putendl("hihi\n");
-				return (snum);
-			}
-		}
-		// return (((!prec && snum[0] == '0' && snum[1] == 0) && !((ft_strchr(form,'o') || ft_strchr(form,'O')) && (ft_strchr(form, '#') || (ft_strchr(form, '0')))))
-		// 	 ? "\0" : snum);
+		return (((!prec && snum[0] == '0' && snum[1] == 0) && deg_octal(form))
+			 ? "\0" : snum);
 	if (!(ret = ft_strnew(zer_to_add + ft_strlen(snum))))
 		return (0);
+	if (ft_atoi(snum) < 0)
+	{
+		ret[i] = '-';
+		i++;
+		j++;
+		zer_to_add += 1;
+	}
 	while (i < zer_to_add)
 	{
 		ret[i] = '0';
@@ -99,10 +94,12 @@ char	*add_prec_to_snum(char *form, char *snum)
 	}
 	while (i < (zer_to_add + (int)ft_strlen(snum)))
 	{
-		ret[i] = snum[i - zer_to_add];
+		ret[i] = snum[j];
 		i++;
+		j++;
 	}
 	ret[i] = 0;
+	// printf("APRES %s\n", ret);
 	return (ret);
 }
 
