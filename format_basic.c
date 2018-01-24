@@ -6,7 +6,7 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 13:52:29 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/01/23 14:47:16 by dsaadia          ###   ########.fr       */
+/*   Updated: 2018/01/24 07:58:59 by schmurz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ char	*get_flags(char *form)
 	{
 		if (!form[ct + 1])
 			break ;
-		if (ft_isdigit(form[ct]) && form[ct] != '0')
+		if ((ft_isdigit(form[ct]) && form[ct] != '0') || form[ct] == '%')
 			break ;
 		ct++;
 	}

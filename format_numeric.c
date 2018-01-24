@@ -6,7 +6,7 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/14 19:21:48 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/01/23 15:15:43 by dsaadia          ###   ########.fr       */
+/*   Updated: 2018/01/24 09:24:04 by schmurz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,34 @@ static char	*helper_others_flag(char *form, char *snum, int len, int nl)
 	return (r);
 }
 
+static char* helper_sharp_flag(char *form, char *snum, int len, int nl)
+{
+	char	*r;
+	int		ct;
+	int		i;
+	char	*fg;
+
+	fg = get_flags(form);
+	ct = 0;
+	i = 0;
+	//printf("SNUM=>%s, NUMLEN=>%d, LEN=>%d\n", snum, nl, len);
+	if (!(r = ft_strnew(len)))
+		return (0);
+	if (ft_strchr(fg, '0') && (i = 2) && ((ct += 2) >= 0) && ((nl -= 2) >= 0))
+	{
+		r[0] = '0';
+		r[1] = form[ft_strlen(form) - 1];
+	}
+	while (ct < len - nl)
+		r[ct++] = (ft_strchr(fg, '0') && !get_prec(form)) ? '0' : ' ';
+	while (ct < len)
+	{
+		r[ct++] = snum[i++];
+	}
+	r[ct] = 0;
+	return (r);
+}
+
 char		*format_numeric(char *form, char *snum, int width, int *lenk)
 {
 	int		numlen;
@@ -85,38 +113,16 @@ char		*format_numeric(char *form, char *snum, int width, int *lenk)
 	char	*flags;
 
 	flags = get_flags(form);
-	numlen = ft_strlen(snum) + (ft_strchr(flags, '+') && ft_atoi(snum) >= 0);
+	numlen = ft_strlen(snum) + (ft_strchr(flags, '+') && ft_atoi(snum) >= 0 && get_base(form) == 10);
 	len = (width > numlen) ? width : numlen;
 	if (width == 0 && ft_strchr(flags, ' '))
 		snum = helper_ws_flag(snum, len);
 	if (ft_strchr(flags, '-'))
 		ret = helper_minus_flag(form, snum, len, numlen);
+	else if (ft_strchr(flags, '#'))
+		ret = helper_sharp_flag(form, snum, len, numlen);
 	else
 		ret = helper_others_flag(form, snum, len, numlen);
 	*lenk = ft_strlen(ret);
 	return (ret);
-}
-
-void		cast_numeric(long long *val, char *form)
-{
-	if (form)
-	{
-		if (ft_strstr(form, "hh"))
-			*val = (char)(*val);
-		else if (ft_strchr(form, 'h'))
-			*val = (short)(*val);
-		else if (ft_strstr(form, "ll") || ft_strchr(form, 'p'))
-			*val = (long long)(*val);
-		else if (ft_strchr(form, 'l'))
-			*val = (long)(*val);
-		else if (ft_strchr(form, 'j'))
-			*val = (intmax_t)(*val);
-		else if (ft_strchr(form, 'z'))
-			*val = (size_t)(*val);
-		else
-			*val = (int)(*val);
-	}
-	else
-		*val = (int)(*val);
-	return ;
 }

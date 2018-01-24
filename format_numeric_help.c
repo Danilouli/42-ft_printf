@@ -6,7 +6,7 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 13:54:27 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/01/23 16:52:02 by dsaadia          ###   ########.fr       */
+/*   Updated: 2018/01/24 09:12:29 by schmurz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,28 @@ char	*add_prec_to_snum(char *form, char *snum)
 	}
 	ret[i] = 0;
 	return (ret);
+}
+
+void		cast_numeric(long long *val, char *form)
+{
+	if (form)
+	{
+		if (ft_strstr(form, "hh"))
+			*val = (char)(*val);
+		else if (ft_strchr(form, 'h'))
+			*val = (short)(*val);
+		else if (ft_strstr(form, "ll") || ft_strchr(form, 'p'))
+			*val = (long long)(*val);
+		else if (ft_strchr(form, 'l'))
+			*val = (long)(*val);
+		else if (ft_strchr(form, 'j'))
+			*val = (intmax_t)(*val);
+		else if (ft_strchr(form, 'z'))
+			*val = (size_t)(*val);
+		else
+			*val = (int)(*val);
+	}
+	else
+		*val = (int)(*val);
+	return ;
 }
