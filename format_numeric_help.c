@@ -6,7 +6,7 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 13:54:27 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/01/24 19:15:01 by schmurz          ###   ########.fr       */
+/*   Updated: 2018/01/25 20:01:47 by schmurz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,5 +124,29 @@ void		cast_numeric(long long *val, char *form)
 	}
 	else
 		*val = (int)(*val);
+	return ;
+}
+
+void		cast_u_numeric(unsigned long long *val, char *form)
+{
+	if (form)
+	{
+		if (ft_strstr(form, "hh") && !ft_strchr(form, 'U'))
+			*val = (unsigned char)(*val);
+		else if (ft_strchr(form, 'h') && !ft_strchr(form, 'U'))
+			*val = (unsigned short)(*val);
+		else if (ft_strstr(form, "ll") || ft_strchr(form, 'p'))
+			*val = (unsigned long long)(*val);
+		else if (ft_strchr(form, 'l'))
+			*val = (unsigned long)(*val);
+		else if (ft_strchr(form, 'j'))
+			*val = (intmax_t)(*val);
+		else if (ft_strchr(form, 'z'))
+			*val = (size_t)(*val);
+		else if (!ft_strchr(form, 'U'))
+			*val = (unsigned int)(*val);
+	}
+	else
+		*val = (unsigned int)(*val);
 	return ;
 }

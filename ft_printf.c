@@ -6,7 +6,7 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/21 17:23:19 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/01/23 17:53:57 by dsaadia          ###   ########.fr       */
+/*   Updated: 2018/01/24 19:52:11 by schmurz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ static int	ft_do_printf_loop(int fd, const char *format, va_list ap)
 	static t_conv convertors[] = {
 		{'d', &numconv},
 		{'i', &numconv},
-		{'u', &numconv},
-		{'U', &numconv},
+		{'u', &u_numconv},
+		{'U', &u_numconv},
 		{'D', &numconv},
 		{'x', &numconv},
 		{'X', &numconv},

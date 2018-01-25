@@ -6,13 +6,13 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 18:18:27 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/01/23 18:38:09 by dsaadia          ###   ########.fr       */
+/*   Updated: 2018/01/24 19:54:48 by schmurz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static long long	gmi(int nb, int base, int sign)
+static long long	gmi(unsigned long long nb, int base, int sign)
 {
 	long long		i;
 
@@ -80,6 +80,31 @@ char				*pf_itoa_base(long long value, int base, char *fm)
 	}
 	if (value < 0 && base == 10)
 		ret[i++] = '-';
+	ret[i] = 0;
+	ft_astrrev(&ret);
+	return (ret);
+}
+
+char				*pf_uitoa_base(unsigned long long value, int base, char *fm)
+{
+	char				*b_string;
+	char				*ret;
+	unsigned long long	nb;
+	long long			i;
+
+	i = 0;
+	nb = value;
+	if (!value)
+		return (ft_strdup("0"));
+	if (!(ret = (char*)malloc(gmi(nb, base, 0) + 1)))
+		return (0);
+	if (!(b_string = ft_create_base(base, ft_isupper(fm[ft_strlen(fm) - 1]))))
+		return (0);
+	while (nb > 0)
+	{
+		ret[i++] = b_string[nb % base];
+		nb = nb / base;
+	}
 	ret[i] = 0;
 	ft_astrrev(&ret);
 	return (ret);

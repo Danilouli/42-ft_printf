@@ -6,7 +6,7 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/23 16:50:39 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/01/24 16:35:09 by schmurz          ###   ########.fr       */
+/*   Updated: 2018/01/25 20:46:09 by schmurz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,11 @@ int						get_prec_chieur(char *form, char *snum);
 int deg_octal(char *form);
 int deg_is_octal_conv(char *form);
 int deg_only_space(char *flags);
+void		cast_u_numeric(unsigned long long *val, char *form);
+wchar_t	*u_numconv(char *form, va_list ap, int *len);
+char		*pf_uitoa_base(unsigned long long value, int base, char *fm);
+wchar_t	*u_numconv(char *form, va_list ap, int *len);
+int		get_prec_str(char *form);
 
 t_list				*g_pfargs;
 

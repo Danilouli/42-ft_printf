@@ -6,14 +6,23 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 13:57:17 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/01/23 15:59:18 by dsaadia          ###   ########.fr       */
+/*   Updated: 2018/01/25 21:44:49 by schmurz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdio.h>
 
-static char		*format_string_helper(char *flags, char *str,
+int		get_prec_str(char *form)
+{
+	while (*form && *form != '.')
+		form++;
+	if (*form == '.')
+		return (ft_atoi(form + 1));
+	return (1);
+}
+
+static char		*format_string_helper(char *form, char *str,
 		size_t width, size_t len)
 {
 	size_t	i;
@@ -22,7 +31,7 @@ static char		*format_string_helper(char *flags, char *str,
 	i = -1;
 	if (!(ret = ft_strnew(width)))
 		return (0);
-	if (ft_strchr(flags, '-'))
+	if (ft_strchr(get_flags(form), '-'))
 	{
 		while (str[++i])
 			ret[i] = str[i];
@@ -34,7 +43,9 @@ static char		*format_string_helper(char *flags, char *str,
 		while (++i < (width - len))
 			ret[i] = ' ';
 		while (i++ < width)
+		{
 			ret[i - 1] = str[i - 1 - (width - len)];
+		}
 	}
 	ret[i - 1] = 0;
 	return (ret);
@@ -43,19 +54,22 @@ static char		*format_string_helper(char *flags, char *str,
 char			*format_string(char *form, char *str)
 {
 	char	*ret;
-	char	*flags;
 	size_t	width;
-	size_t	i;
+	int			prec;
 	size_t	len;
 
-	len = ft_strlen(str);
-	flags = get_flags(form);
+	ret = ft_strdup(str);
 	width = get_width(form);
-	i = 0;
-	if (width <= ft_strlen(str))
-		return (ft_strdup(str));
+	if (ft_strchr(form, '.') && !ft_strchr(form, 'c')
+		&& ((prec = get_prec_str(form)) < (int)ft_strlen(ret))
+		&& form[ft_strlen(form) - 1] != '%')
+			ret[prec] = 0;
+	if (width <= (len = ft_strlen(ret)))
+	{
+		return (ret);
+	}
 	else
-		ret = format_string_helper(flags, str, width, len);
+		ret = format_string_helper(form, ret, width, len);
 	return (ret);
 }
 
@@ -89,18 +103,17 @@ static wchar_t	*format_wstring_helper(char *flags, wchar_t *wstr,
 wchar_t			*format_wstring(char *form, wchar_t *wstr)
 {
 	wchar_t	*ret;
-	char	*flags;
 	size_t	width;
-	size_t	i;
-	size_t	len;
+	int 		prec;
+	size_t  len;
 
-	len = ft_wstrlen(wstr);
-	flags = get_flags(form);
+	ret = ft_wstrdup(wstr);
 	width = get_width(form);
-	i = 0;
-	if (width <= len)
-		return (ft_wstrdup(wstr));
+	if (ft_strchr(form, '.') && !ft_strchr(form, 'C') && !ft_strchr(form, 'c') && ((prec = get_prec_str(form)) < (int)ft_wstrlen(ret)))
+			ret[prec] = 0;
+	if (width <= (len = ft_wstrlen(ret)))
+		return (ret);
 	else
-		ret = format_wstring_helper(flags, wstr, width, len);
+		ret = format_wstring_helper(form, ret, width, len);
 	return (ret);
 }

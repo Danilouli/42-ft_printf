@@ -6,7 +6,7 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 13:52:29 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/01/24 07:58:59 by schmurz          ###   ########.fr       */
+/*   Updated: 2018/01/25 20:51:40 by schmurz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int		no_unallowed_flag(char allowed_flags[], char *form)
 int		get_width(char *form)
 {
 	while (*form && !(ft_isdigit(*form) && *form != '0')
-		&& *form != 'v' && *form != 'V')
+		&& *form != 'v' && *form != 'V' && *form != '.')
 		form++;
 	if (ft_isdigit(*form) && *form != '0')
 		return (ft_atoi(form));
