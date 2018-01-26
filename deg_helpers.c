@@ -6,7 +6,7 @@
 /*   By: schmurz <schmurz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 15:27:32 by schmurz           #+#    #+#             */
-/*   Updated: 2018/01/26 10:21:59 by schmurz          ###   ########.fr       */
+/*   Updated: 2018/01/26 15:27:43 by schmurz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,5 @@ int deg_is_octal_conv(char *form)
 int deg_only_space(char *flags)
 {
   return (ft_strchr(flags, ' ') && !ft_strchr(flags, '-')
-  && !ft_strchr(flags, '0') && !ft_strchr(flags, '.')
-  && !ft_strchr(flags, '+'));
+  && !ft_strchr(flags, '0') && !ft_strchr(flags, '+'));
 }

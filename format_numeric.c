@@ -6,7 +6,7 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/14 19:21:48 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/01/26 10:21:25 by schmurz          ###   ########.fr       */
+/*   Updated: 2018/01/26 15:30:27 by schmurz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,7 @@ char		*format_numeric(char *form, char *snum, int width, int *lenk)
 	numlen = ft_strlen(snum) + (ft_strchr(flags, '+') && ft_atoi(snum) >= 0 && get_base(form) == 10);
 	len = (width > numlen) ? width : numlen;
 	ret = snum;
-	if (width == 0 && deg_only_space(flags) && ft_atoi(snum) >= 0 && !ft_strchr(form, 'u') && !ft_strchr(form, 'U'))
+	if (width != len && deg_only_space(flags) && ft_atoi(snum) >= 0 && !ft_strchr(form, 'u') && !ft_strchr(form, 'U'))
 	{
 		return (snum = helper_ws_flag(snum, len, lenk));
 	}
