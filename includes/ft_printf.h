@@ -6,13 +6,14 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/23 16:50:39 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/01/25 20:46:09 by schmurz          ###   ########.fr       */
+/*   Updated: 2018/01/26 15:11:30 by schmurz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 # define PFARGS(X) ((t_pfargs*)(g_pfargs->content))->X
+# define LCHR(S) S[ft_strlen(S) - 1]
 
 # include "libftprintf.h"
 
