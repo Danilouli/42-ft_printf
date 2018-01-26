@@ -6,7 +6,7 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/21 17:23:19 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/01/24 19:52:11 by schmurz          ###   ########.fr       */
+/*   Updated: 2018/01/25 22:46:12 by schmurz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,10 +87,10 @@ int			ft_fprintf(int fd, const char *format, ...)
 	va_start(ap, format);
 	formlen = 0;
 	if (!count_printf_args(format))
-		return (-1);
+		return (0);
 	formlen = ft_do_printf_loop(fd, format, ap);
 	va_end(ap);
-	return (formlen);
+	return ((formlen < 0) ? 0 : formlen);
 }
 
 int			ft_printf(const char *format, ...)
@@ -101,8 +101,8 @@ int			ft_printf(const char *format, ...)
 	va_start(ap, format);
 	formlen = 0;
 	if (!count_printf_args(format))
-		return (-1);
+		return (0);
 	formlen = ft_do_printf_loop(1, format, ap);
 	va_end(ap);
-	return (formlen);
+	return ((formlen < 0) ? 0 : formlen);
 }

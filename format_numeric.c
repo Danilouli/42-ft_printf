@@ -6,7 +6,7 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/14 19:21:48 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/01/25 18:34:54 by schmurz          ###   ########.fr       */
+/*   Updated: 2018/01/26 10:21:25 by schmurz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,10 @@ static char	*helper_others_flag(char *form, char *snum, int len, int nl)
 	if (!ft_strchr(form, 'u') && !ft_strchr(form, 'U') && (val = ft_atoi(snum)) < 0 && ft_strchr(fg, '0') && (get_prec(form) < 2) && ct++ >= 0 && nl-- >= 0 && i++ >= 0)
 		r[0] = '-';
 	while (ct < len - nl)
-		r[ct++] = (ft_strchr(fg, '0') && get_prec(form) < 2) ? '0' : ' ';
+	{
+		r[ct] = (ft_strchr(fg, '0') && get_prec(form) < 2 && !(ft_strchr(fg, ' ') && !ct)) ? '0' : ' ';
+		ct++;
+	}
 	while (ct < len)
 	{
 		if (!ft_strchr(form, 'u') && !ft_strchr(form, 'U') && (ct == len - nl) && (r[0] != '+') && ft_strchr(fg, '+') && val >= 0)
