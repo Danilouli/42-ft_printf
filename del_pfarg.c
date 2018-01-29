@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strsub.c                                        :+:      :+:    :+:   */
+/*   del_pfarg.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: schmurz <schmurz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/13 01:33:30 by schmurz           #+#    #+#             */
-/*   Updated: 2018/01/28 10:19:29 by schmurz          ###   ########.fr       */
+/*   Created: 2018/01/26 17:12:03 by schmurz           #+#    #+#             */
+/*   Updated: 2018/01/29 15:29:14 by schmurz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
-char		*ft_strsub(char const *s, unsigned int start, size_t len)
+static void del_pfarg_content(t_pfargs *pfargs) {
+  free(pfargs->value);
+  pfargs->value = NULL;
+  pfargs->type = 0;
+  pfargs->len = 0;
+  pfargs->index = 0;
+}
+
+void del_pfarg(void *content, size_t size)
 {
-	char	*r;
-	size_t	i;
-
-	i = -1;
-	if (s == 0)
-		return (0);
-	if (!(r = (char*)malloc(len + 1)))
-		return (0);
-	while (++i < len)
-		r[i] = s[start + i];
-	r[i] = 0;
-	return (r);
+  size = 0;
+  del_pfarg_content((t_pfargs*)content);
+  free(content);
+  content = NULL;
 }

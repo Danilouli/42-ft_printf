@@ -6,7 +6,7 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/23 16:50:39 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/01/26 15:11:30 by schmurz          ###   ########.fr       */
+/*   Updated: 2018/01/29 15:45:34 by schmurz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ char				*get_flags(char *form);
 char				*format_numeric(char *flags, char *snum,
 					int width, int *lenk);
 void				cast_numeric(long long *val, char *form);
-char				*get_flags(char *form);
 int					get_base(char *form);
 char				*add_prec_to_snum(char *form, char *snum);
 int					ft_fprintf(int fd, const char *format, ...);
@@ -63,6 +62,11 @@ wchar_t	*u_numconv(char *form, va_list ap, int *len);
 char		*pf_uitoa_base(unsigned long long value, int base, char *fm);
 wchar_t	*u_numconv(char *form, va_list ap, int *len);
 int		get_prec_str(char *form);
+int deg_nf(char *form, char *fg, long long *val, char *sn);
+int deg_nf2(char *form, char *fg, long long *val, char *sn);
+int deg_nf3(char *form, char *f, char *r, long long val);
+int deg_octal_shit(char *snum, char *form, char *flags);
+void del_pfarg(void *content, size_t size);
 
 t_list				*g_pfargs;
 

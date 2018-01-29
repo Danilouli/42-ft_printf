@@ -6,7 +6,7 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 13:54:27 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/01/26 15:14:37 by schmurz          ###   ########.fr       */
+/*   Updated: 2018/01/26 16:32:45 by schmurz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,73 +34,6 @@ int		get_base(char *form)
 					10 : ft_atoi(form + 1));
 	}
 	return (10);
-}
-
-int		get_prec_chieur(char *form, char *snum)
-{
-	while (*form && *form != '.')
-		form++;
-	if (*form == '.' && ft_atoi(form + 1) == 0 && *(form + 2) != '0'
-		&& *snum == '0' && !(*(snum + 1)))
-		return (0);
-	if (*form == '.')
-	{
-		if (ft_atoi(snum) >= 0)
-			return ((ft_atoi(form + 1) == 0) ? 1 : ft_atoi(form + 1));
-		else
-			return ((ft_atoi(form + 1) == 0) ? 1 : (ft_atoi(form + 1) + 1));
-	}
-	return (1);
-}
-
-int		get_prec(char *form)
-{
-	while (*form && *form != '.')
-		form++;
-	if (*form == '.')
-		return ((ft_atoi(form + 1) == 0) ? 1 : ft_atoi(form + 1));
-	return (1);
-}
-
-char	*add_prec_to_snum(char *form, char *snum)
-{
-	int		prec;
-	int		i;
-	int		zer_to_add;
-	char	*ret;
-	int j;
-
-	j = 0;
-	prec = get_prec_chieur(form, snum);
-	// printf("AVANT %s, PREC %d\n", snum, prec);
-	i = 0;
-	if ((prec = get_prec_chieur(form, snum)) < 2 ||
-		(zer_to_add = prec - (int)ft_strlen(snum)) <= 0)
-		return (((!prec && snum[0] == '0' && snum[1] == 0) && deg_octal(form))
-			 ? "\0" : snum);
-	if (!(ret = ft_strnew(zer_to_add + ft_strlen(snum))))
-		return (0);
-	if (ft_atoi(snum) < 0)
-	{
-		ret[i] = '-';
-		i++;
-		j++;
-		zer_to_add += 1;
-	}
-	while (i < zer_to_add)
-	{
-		ret[i] = '0';
-		i++;
-	}
-	while (i < (zer_to_add + (int)ft_strlen(snum)))
-	{
-		ret[i] = snum[j];
-		i++;
-		j++;
-	}
-	ret[i] = 0;
-	// printf("APRES %s\n", ret);
-	return (ret);
 }
 
 void		cast_numeric(long long *val, char *form)

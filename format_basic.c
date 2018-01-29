@@ -6,7 +6,7 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 13:52:29 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/01/25 20:51:40 by schmurz          ###   ########.fr       */
+/*   Updated: 2018/01/28 10:16:46 by schmurz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,5 @@ char	*get_flags(char *form)
 	}
 	if (ct)
 		return (ft_strsub(form, 0, ct));
-	return ("");
+	return (ft_strdup("\0"));
 }

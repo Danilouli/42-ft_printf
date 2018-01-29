@@ -6,7 +6,7 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/21 17:23:19 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/01/25 22:46:12 by schmurz          ###   ########.fr       */
+/*   Updated: 2018/01/29 15:38:43 by schmurz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,16 @@ static void	ft_printf_print_arg(int fd, int dg[4], t_conv convs[17], va_list ap)
 	dg[2] = -1;
 	dg[0] = dg[0] + PFARGS(len);
 	dg[3] = dg[3] + dg[1];
+	free(PFARGS(value));
+	free(g_pfargs->content);
+	free(res);
 }
 
 static int	ft_printf_loop(int fd, const char *fmt, va_list ap,
 		t_conv convs[17])
 {
 	int dg[4];
+	t_list *keeper;
 
 	dg[0] = 0;
 	dg[1] = 0;
@@ -46,7 +50,9 @@ static int	ft_printf_loop(int fd, const char *fmt, va_list ap,
 					break ;
 				}
 			}
+			keeper = g_pfargs;
 			g_pfargs = g_pfargs->next;
+			free(keeper);
 		}
 		else if (dg[3]++ >= 0)
 			ft_putchar_fd(fmt[dg[0]++], fd);
