@@ -6,7 +6,7 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/23 16:50:39 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/01/29 15:45:34 by schmurz          ###   ########.fr       */
+/*   Updated: 2018/01/30 14:16:59 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int deg_nf(char *form, char *fg, long long *val, char *sn);
 int deg_nf2(char *form, char *fg, long long *val, char *sn);
 int deg_nf3(char *form, char *f, char *r, long long val);
 int deg_octal_shit(char *snum, char *form, char *flags);
-void del_pfarg(void *content, size_t size);
+int del_gpfargs(t_list **head);
 
 t_list				*g_pfargs;
 

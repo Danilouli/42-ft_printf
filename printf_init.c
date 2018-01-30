@@ -6,7 +6,7 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/23 17:29:22 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/01/30 12:00:13 by dsaadia          ###   ########.fr       */
+/*   Updated: 2018/01/30 14:17:16 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,12 +90,12 @@ int				count_printf_args(const char *form)
 		{
 			pfargs = init_pfargs(ft_strsub(form, j, p + 1),
 			((infos == 'c') ? form[j + p] : '%'), j);
-			if (multiple_flag_arg(pfargs.value) && !(g_pfargs = 0))
+			if (multiple_flag_arg(pfargs.value) && del_gpfargs(&g_pfargs) && !(g_pfargs = 0))
 				return (0);
 			ft_lstadd(&g_pfargs, ft_lstnew((&pfargs), sizeof(pfargs)));
 			j = j + p + 1;
 		}
-		else if (p == -1 && !(g_pfargs = 0))
+		else if (p == -1 && del_gpfargs(&g_pfargs) && !(g_pfargs = 0))
 			return (0);
 		else if (infos == 'l')
 			j++;
