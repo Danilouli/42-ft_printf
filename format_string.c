@@ -6,12 +6,11 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 13:57:17 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/01/30 16:01:22 by dsaadia          ###   ########.fr       */
+/*   Updated: 2018/01/30 18:32:18 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
 int				get_prec_str(char *form)
 {

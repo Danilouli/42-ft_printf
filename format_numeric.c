@@ -6,12 +6,11 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/14 19:21:48 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/01/30 17:39:21 by dsaadia          ###   ########.fr       */
+/*   Updated: 2018/01/30 18:32:12 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
 static char	*helper_ws_flag(char *snum, int len, int *lenk)
 {

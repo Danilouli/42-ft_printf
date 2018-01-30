@@ -6,12 +6,11 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 13:54:27 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/01/30 15:40:12 by dsaadia          ###   ########.fr       */
+/*   Updated: 2018/01/30 18:32:06 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
 int		get_base(char *form)
 {

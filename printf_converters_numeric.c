@@ -6,12 +6,11 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 14:00:53 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/01/30 17:53:29 by dsaadia          ###   ########.fr       */
+/*   Updated: 2018/01/30 18:32:38 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
 wchar_t		*perconv(char *form, va_list ap, int *len)
 {

@@ -6,12 +6,11 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 13:46:16 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/01/23 16:03:04 by dsaadia          ###   ########.fr       */
+/*   Updated: 2018/01/30 18:32:28 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
-#include <stdio.h>
 
 wchar_t	*ft_itows(int nb)
 {

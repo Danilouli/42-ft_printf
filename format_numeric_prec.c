@@ -6,12 +6,11 @@
 /*   By: schmurz <schmurz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 16:32:02 by schmurz           #+#    #+#             */
-/*   Updated: 2018/01/30 15:55:31 by dsaadia          ###   ########.fr       */
+/*   Updated: 2018/01/30 18:32:23 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
 int		get_prec_chieur(char *form, char *snum)
 {
