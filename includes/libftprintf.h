@@ -6,7 +6,7 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/13 18:38:26 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/01/23 17:30:42 by dsaadia          ###   ########.fr       */
+/*   Updated: 2018/01/30 11:42:23 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ wchar_t				*ft_wstrdup(wchar_t const *src);
 int					ft_max(int a, int b);
 int					ft_fprintf(int fd, const char *format, ...);
 int					ft_printf(const char *format, ...);
+int					ft_numberchars(const char *str, char c);
 void				ft_troll(void);
 
 #endif

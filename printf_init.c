@@ -6,12 +6,27 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/23 17:29:22 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/01/23 17:15:01 by dsaadia          ###   ########.fr       */
+/*   Updated: 2018/01/30 12:00:13 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdio.h>
+
+static int				multiple_flag_arg(const char *format)
+{
+	static char mflags[2] = ".#";
+	int i;
+
+	i = 0;
+	while (mflags[i])
+	{
+		if (ft_numberchars(format, mflags[i]) > 1)
+			return (1);
+		i++;
+	}
+	return (0);
+}
 
 int				is_printf_flag(char c)
 {
@@ -74,7 +89,9 @@ int				count_printf_args(const char *form)
 		if (p > 0 && (infos == 'c' || infos == '%'))
 		{
 			pfargs = init_pfargs(ft_strsub(form, j, p + 1),
-				((infos == 'c') ? form[j + p] : '%'), j);
+			((infos == 'c') ? form[j + p] : '%'), j);
+			if (multiple_flag_arg(pfargs.value) && !(g_pfargs = 0))
+				return (0);
 			ft_lstadd(&g_pfargs, ft_lstnew((&pfargs), sizeof(pfargs)));
 			j = j + p + 1;
 		}
