@@ -6,7 +6,7 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/14 19:21:48 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/01/29 16:41:20 by schmurz          ###   ########.fr       */
+/*   Updated: 2018/01/30 17:39:21 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,11 @@ static char	*helper_minus_flag(char *form, char *snum, int len, int numlen)
 
 static char	*helper_others_flag(char *form, char *sn, int len, int nl)
 {
-	char	*r;
-	int		ct;
-	long long		val;
-	int		i;
-	char	*fg;
+	char		*r;
+	int			ct;
+	long long	val;
+	int			i;
+	char		*fg;
 
 	ct = 0;
 	i = 0;
@@ -69,18 +69,17 @@ static char	*helper_others_flag(char *form, char *sn, int len, int nl)
 	if (deg_nf2(form, fg, &val, sn) && ct++ >= 0 && nl-- >= 0 && i++ >= 0)
 		r[0] = '-';
 	while (ct < len - nl)
-	{
-		r[ct] = (ft_strchr(fg, '0') && get_prec(form) < 2 && !(ft_strchr(fg, ' ') && !ct)) ? '0' : ' ';
-		ct++;
-	}
+		r[ct++] = (ft_strchr(fg, '0') && get_prec(form) < 2
+		&& !(ft_strchr(fg, ' ') && !(ct - 1))) ? '0' : ' ';
 	while (ct < len)
-		r[ct++] = (deg_nf3(form, fg, r, val) && (ct == len - nl)) ? '+' : sn[i++];
+		r[ct++] = (deg_nf3(form, fg, r, val)
+		&& (ct == len - nl)) ? '+' : sn[i++];
 	r[ct] = 0;
 	free(fg);
 	return (r);
 }
 
-static char* helper_sharp_flag(char *form, char *snum, int len, int nl)
+static char	*helper_sharp_flag(char *form, char *snum, int len, int nl)
 {
 	char	*r;
 	int		ct;
@@ -94,7 +93,7 @@ static char* helper_sharp_flag(char *form, char *snum, int len, int nl)
 	if (!(r = ft_strnew(len)))
 		return (0);
 	fg = get_flags(form);
-	if (ft_strchr(fg, '0') && (i++ >=0) && (ct++ >= 0) && (nl-- >= 0))
+	if (ft_strchr(fg, '0') && (i++ >= 0) && (ct++ >= 0) && (nl-- >= 0))
 	{
 		r[0] = '0';
 		if (!deg_is_octal_conv(form) && ct++ >= 0 && nl-- >= 0 && i++ >= 0)
@@ -119,19 +118,15 @@ char		*format_numeric(char *form, char *snum, int width, int *lenk)
 
 	flags = get_flags(form);
 	del = 0;
-	numlen = ft_strlen(snum) +
-	(ft_strchr(flags, '+') && ft_atoi(snum) >= 0 && get_base(form) == 10);
+	numlen = deg_nl(form, flags, snum);
 	len = (width > numlen) ? width : numlen;
 	ret = snum;
 	if (width != len && deg_only_space(flags) && ft_atoi(snum) >= 0
-	&& !ft_strchr("uU", LCHR(form)))
-	{
-		free(flags);
+	&& !ft_strchr("uU", LCHR(form)) && cool_freer(flags))
 		return (helper_ws_flag(snum, len, lenk));
-	}
 	if (ft_strchr(flags, '-') && (del = 1))
 		ret = helper_minus_flag(form, snum, len, numlen);
-	else if (ft_strchr(flags, '#') && deg_octal_shit(snum, form, flags) && (del = 1))
+	else if (ft_strchr(flags, '#') && deg_o_sh(snum, form, flags) && (del = 1))
 		ret = helper_sharp_flag(form, snum, len, numlen);
 	else if ((!deg_only_space(flags) || width) && (del = 1))
 		ret = helper_others_flag(form, snum, len, numlen);

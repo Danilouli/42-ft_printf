@@ -6,14 +6,14 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 14:00:53 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/01/29 16:02:42 by schmurz          ###   ########.fr       */
+/*   Updated: 2018/01/30 17:53:29 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdio.h>
 
-wchar_t	*perconv(char *form, va_list ap, int *len)
+wchar_t		*perconv(char *form, va_list ap, int *len)
 {
 	int width;
 
@@ -23,10 +23,10 @@ wchar_t	*perconv(char *form, va_list ap, int *len)
 	return ((wchar_t*)format_string(form, "%"));
 }
 
-static void helper_snum(char *form, int *len, char **snum)
+static void	helper_snum(char *form, int *len, char **snum)
 {
-	int up;
-	char *keep;
+	int		up;
+	char	*keep;
 
 	keep = *snum;
 	up = ft_isupper(LCHR(form));
@@ -46,13 +46,13 @@ static void helper_snum(char *form, int *len, char **snum)
 	free(keep);
 }
 
-wchar_t	*u_numconv(char *form, va_list ap, int *len)
+wchar_t		*u_numconv(char *form, va_list ap, int *len)
 {
-	char			*snum;
-	char			*flags;
-	int				width;
-	unsigned long long		val;
-	char			*r;
+	char				*snum;
+	char				*flags;
+	int					width;
+	unsigned long long	val;
+	char				*r;
 
 	val = va_arg(ap, unsigned long long);
 	if (!no_unallowed_flag("#+-0. hljzv", form))
@@ -62,8 +62,8 @@ wchar_t	*u_numconv(char *form, va_list ap, int *len)
 	if (val == 0)
 		return ((wchar_t*)format_numeric(form,
 			add_prec_to_snum(form, "0"), width, len));
-	if (!(snum = add_prec_to_snum(form, (r = pf_uitoa_base(val,
-		get_base(form), form)))))
+		r = pf_uitoa_base(val, get_base(form), form);
+	if (!(snum = add_prec_to_snum(form, r)))
 		return (0);
 	free(r);
 	flags = get_flags(form);
@@ -74,7 +74,7 @@ wchar_t	*u_numconv(char *form, va_list ap, int *len)
 	return ((wchar_t*)r);
 }
 
-wchar_t	*numconv(char *form, va_list ap, int *len)
+wchar_t		*numconv(char *form, va_list ap, int *len)
 {
 	char			*snum;
 	char			*flags;
@@ -89,9 +89,9 @@ wchar_t	*numconv(char *form, va_list ap, int *len)
 	cast_numeric(&val, form);
 	if (val == 0 && !ft_strchr(form, 'p'))
 		return ((wchar_t*)format_numeric(form,
-			add_prec_to_snum(form, "0"), width, len));
-	if (!(snum = add_prec_to_snum(form, (r = pf_itoa_base(val,
-		get_base(form), form)))))
+		add_prec_to_snum(form, "0"), width, len));
+		r = pf_itoa_base(val, get_base(form), form);
+	if (!(snum = add_prec_to_snum(form, r)))
 		return (0);
 	free(r);
 	flags = get_flags(form);

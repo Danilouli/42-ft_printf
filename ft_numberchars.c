@@ -6,11 +6,11 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/30 11:40:57 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/01/30 11:42:32 by dsaadia          ###   ########.fr       */
+/*   Updated: 2018/01/30 16:19:43 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int ft_numberchars(const char *str, char c)
+int	ft_numberchars(const char *str, char c)
 {
 	int r;
 

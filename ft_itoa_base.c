@@ -6,7 +6,7 @@
 /*   By: exam <exam@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/28 14:24:00 by exam              #+#    #+#             */
-/*   Updated: 2018/01/23 18:18:17 by dsaadia          ###   ########.fr       */
+/*   Updated: 2018/01/30 16:19:16 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ static long long	gmi(int nb, int base, int sign)
 
 char				*ft_itoa_base(long long value, int base, int ismaj)
 {
-	char		*b_string;
-	char		*ret;
+	char				*b_string;
+	char				*ret;
 	unsigned long long	nb;
-	long long	i;
+	long long			i;
 
 	i = 0;
 	nb = (value < 0) ? (unsigned)value : value;

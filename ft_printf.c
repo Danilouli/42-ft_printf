@@ -6,7 +6,7 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/21 17:23:19 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/01/29 15:38:43 by schmurz          ###   ########.fr       */
+/*   Updated: 2018/01/30 16:32:51 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,10 @@ static void	ft_printf_print_arg(int fd, int dg[4], t_conv convs[17], va_list ap)
 static int	ft_printf_loop(int fd, const char *fmt, va_list ap,
 		t_conv convs[17])
 {
-	int dg[4];
-	t_list *keeper;
+	int		dg[4];
+	t_list	*keeper;
 
-	dg[0] = 0;
-	dg[1] = 0;
-	dg[2] = -1;
-	dg[3] = 0;
+	deg_init_dg(&(dg[0]), &(dg[1]), &(dg[2]), &(dg[3]));
 	while (fmt[dg[0]])
 	{
 		if (g_pfargs && dg[0] == PFARGS(index))

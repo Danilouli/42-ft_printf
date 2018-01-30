@@ -6,7 +6,7 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/23 16:50:39 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/01/30 14:16:59 by dsaadia          ###   ########.fr       */
+/*   Updated: 2018/01/30 18:26:04 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,22 +51,29 @@ int					ft_fprintf(int fd, const char *format, ...);
 int					ft_printf(const char *format, ...);
 char				*format_string(char *form, char *str);
 wchar_t				*format_wstring(char *form, wchar_t *str);
-char					*pf_itoa_base(long long value, int base, char *form);
-int						get_prec(char *form);
-int						get_prec_chieur(char *form, char *snum);
-int deg_octal(char *form);
-int deg_is_octal_conv(char *form);
-int deg_only_space(char *flags);
-void		cast_u_numeric(unsigned long long *val, char *form);
-wchar_t	*u_numconv(char *form, va_list ap, int *len);
-char		*pf_uitoa_base(unsigned long long value, int base, char *fm);
-wchar_t	*u_numconv(char *form, va_list ap, int *len);
-int		get_prec_str(char *form);
-int deg_nf(char *form, char *fg, long long *val, char *sn);
-int deg_nf2(char *form, char *fg, long long *val, char *sn);
-int deg_nf3(char *form, char *f, char *r, long long val);
-int deg_octal_shit(char *snum, char *form, char *flags);
-int del_gpfargs(t_list **head);
+char				*pf_itoa_base(long long value, int base, char *form);
+int					get_prec(char *form);
+int					get_prec_chieur(char *form, char *snum);
+int					deg_octal(char *form);
+int					deg_is_octal_conv(char *form);
+int					deg_only_space(char *flags);
+void				cast_u_numeric(unsigned long long *val, char *form);
+wchar_t				*u_numconv(char *form, va_list ap, int *len);
+char				*pf_uitoa_base(unsigned long long value,
+					int base, char *fm);
+wchar_t				*u_numconv(char *form, va_list ap, int *len);
+int					get_prec_str(char *form);
+int					deg_nf(char *form, char *fg, long long *val, char *sn);
+int					deg_nf2(char *form, char *fg, long long *val, char *sn);
+int					deg_nf3(char *form, char *f, char *r, long long val);
+int					deg_o_sh(char *snum, char *form, char *flags);
+int					del_gpfargs(t_list **head);
+int					deg_nl(char *form, char *flags, char *snum);
+int					cool_freer(void *addr);
+void				deg_init_dg(int *dg0, int *dg1, int *dg2, int *dg3);
+int					is_printf_flag(char c);
+int					is_printf_conversion(char c);
+int					is_printf_arg(const char *format, char *info);
 
 t_list				*g_pfargs;
 

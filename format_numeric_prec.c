@@ -6,7 +6,7 @@
 /*   By: schmurz <schmurz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 16:32:02 by schmurz           #+#    #+#             */
-/*   Updated: 2018/01/29 14:05:53 by schmurz          ###   ########.fr       */
+/*   Updated: 2018/01/30 15:55:31 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,16 +45,16 @@ char	*add_prec_to_snum(char *form, char *snum)
 	int		i;
 	int		zer_to_add;
 	char	*ret;
-	int j;
+	int		j;
 
 	j = 0;
 	prec = get_prec_chieur(form, snum);
 	i = 0;
 	if ((prec = get_prec_chieur(form, snum)) < 2 ||
 		(zer_to_add = prec - (int)ft_strlen(snum)) <= 0)
-		return (((!prec && ft_strequ(snum,"0")) && deg_octal(form)) ?
+		return (((!prec && ft_strequ(snum, "0")) && deg_octal(form)) ?
 		ft_strdup("\0") : ft_strdup(snum));
-	if (!(ret = ft_strnew(zer_to_add + ft_strlen(snum))))
+		if (!(ret = ft_strnew(zer_to_add + ft_strlen(snum))))
 		return (0);
 	if (ft_atoi(snum) < 0 && j++ >= 0 && zer_to_add++ >= 0)
 		ret[i++] = '-';

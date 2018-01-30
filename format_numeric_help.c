@@ -6,7 +6,7 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 13:54:27 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/01/26 16:32:45 by schmurz          ###   ########.fr       */
+/*   Updated: 2018/01/30 15:40:12 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,17 +36,17 @@ int		get_base(char *form)
 	return (10);
 }
 
-void		cast_numeric(long long *val, char *form)
+void	cast_numeric(long long *val, char *form)
 {
 	if (form)
 	{
-		if (ft_strstr(form, "hh") && !ft_strchr("DOB",LCHR(form)))
+		if (ft_strstr(form, "hh") && !ft_strchr("DOB", LCHR(form)))
 			*val = (char)(*val);
-		else if (ft_strchr(form, 'h') && !ft_strchr("DOB",LCHR(form)))
+		else if (ft_strchr(form, 'h') && !ft_strchr("DOB", LCHR(form)))
 			*val = (short)(*val);
 		else if (ft_strstr(form, "ll") || ft_strchr(form, 'p'))
 			*val = (long long)(*val);
-		else if (ft_strchr(form, 'l') || ft_strchr("DOB",LCHR(form)))
+		else if (ft_strchr(form, 'l') || ft_strchr("DOB", LCHR(form)))
 			*val = (long)(*val);
 		else if (ft_strchr(form, 'j'))
 			*val = (intmax_t)(*val);
@@ -60,7 +60,7 @@ void		cast_numeric(long long *val, char *form)
 	return ;
 }
 
-void		cast_u_numeric(unsigned long long *val, char *form)
+void	cast_u_numeric(unsigned long long *val, char *form)
 {
 	if (form)
 	{

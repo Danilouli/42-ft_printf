@@ -6,14 +6,14 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 13:57:17 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/01/29 14:29:15 by schmurz          ###   ########.fr       */
+/*   Updated: 2018/01/30 16:01:22 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdio.h>
 
-int		get_prec_str(char *form)
+int				get_prec_str(char *form)
 {
 	while (*form && *form != '.')
 		form++;
@@ -25,9 +25,9 @@ int		get_prec_str(char *form)
 static char		*format_string_helper(char *form, char *str,
 		size_t width, size_t len)
 {
-	size_t	i;
-	char	*ret;
-	char *flags;
+	size_t		i;
+	char		*ret;
+	char		*flags;
 
 	i = -1;
 	if (!(ret = ft_strnew(width)))
@@ -55,9 +55,9 @@ char			*format_string(char *form, char *str)
 {
 	char	*ret;
 	size_t	width;
-	int			prec;
+	int		prec;
 	size_t	len;
-	char *k;
+	char	*k;
 
 	ret = ft_strdup(str);
 	width = get_width(form);
@@ -107,13 +107,15 @@ wchar_t			*format_wstring(char *form, wchar_t *wstr)
 {
 	wchar_t	*ret;
 	size_t	width;
-	int 		prec;
-	size_t  len;
-	wchar_t *k;
+	int		prec;
+	size_t	len;
+	wchar_t	*k;
 
 	ret = ft_wstrdup(wstr);
 	width = get_width(form);
-	if (ft_strchr(form, '.') && !ft_strchr(form, 'C') && !ft_strchr(form, 'c') && ((prec = get_prec_str(form)) < (int)ft_wstrlen(ret)))
+	if (ft_strchr(form, '.') && !ft_strchr(form, 'C')
+		&& !ft_strchr(form, 'c')
+		&& ((prec = get_prec_str(form)) < (int)ft_wstrlen(ret)))
 		ret[prec] = 0;
 	if (width <= (len = ft_wstrlen(ret)))
 		return (ret);

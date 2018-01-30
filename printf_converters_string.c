@@ -6,7 +6,7 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 17:13:13 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/01/29 16:13:37 by schmurz          ###   ########.fr       */
+/*   Updated: 2018/01/30 17:57:03 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ wchar_t	*charconv(char *form, va_list ap, int *len)
 	char	*ret;
 	char	*flags;
 	int		width;
-	int 	val;
+	int		val;
 	char	*k;
 
 	width = get_width(form);
@@ -27,14 +27,15 @@ wchar_t	*charconv(char *form, va_list ap, int *len)
 	flags = get_flags(form);
 	if ((val = va_arg(ap, int)) == 0)
 	{
-		while (!ft_strchr(flags,'.') && width-- > 1 && (*len)++ >= 0)
+		while (!ft_strchr(flags, '.') && width-- > 1 && (*len)++ >= 0)
 			ft_putchar(' ');
 		ft_putchar(val);
 		(*len)++;
 		free(flags);
 		return (ft_wstrdup((wchar_t*)("\0")));
 	}
-	ret = format_string(form, (k = ft_itos(val)));
+	k = ft_itos(val);
+	ret = format_string(form, k);
 	*len = ft_max(ft_strlen(ret), width);
 	free(flags);
 	free(k);
@@ -45,7 +46,7 @@ wchar_t	*strconv(char *form, va_list ap, int *len)
 {
 	char	*ret;
 	int		width;
-	char *val;
+	char	*val;
 
 	width = get_width(form);
 	if (ft_strchr(form, 'l'))
@@ -69,14 +70,15 @@ wchar_t	*wcharconv(char *form, va_list ap, int *len)
 	width = get_width(form);
 	if ((val = va_arg(ap, int)) == 0)
 	{
-		while (!ft_strchr(flags,'.') && width-- > 1 && (*len)++ >= 0)
+		while (!ft_strchr(flags, '.') && width-- > 1 && (*len)++ >= 0)
 			ft_putchar(' ');
 		ft_putchar(val);
 		(*len)++;
 		free(flags);
 		return (ft_wstrdup((wchar_t*)("\0")));
 	}
-	ret = format_wstring(form, (k = ft_itows(val)));
+	k = ft_itows(val);
+	ret = format_wstring(form, k);
 	*len = ft_max(ft_wstrlen(ret), width);
 	free(flags);
 	free(k);

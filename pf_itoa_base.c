@@ -6,7 +6,7 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 18:18:27 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/01/29 16:20:51 by schmurz          ###   ########.fr       */
+/*   Updated: 2018/01/30 17:47:38 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,8 @@ char				*pf_itoa_base(long long value, int base, char *fm)
 		return (ft_strdup("0"));
 	if (value == -9223372036854775807 && base == 10)
 		return (ft_strdup("-9223372036854775807"));
-	if (!(ret = (char*)malloc(gmi(nb, base, value < 0) + 1)))
-		return (0);
-	if (!(b_string = ft_create_base(base, ft_isupper(LCHR(fm)))))
+	if (!(ret = (char*)malloc(gmi(nb, base, value < 0) + 1))
+	|| !(b_string = ft_create_base(base, ft_isupper(LCHR(fm)))))
 		return (0);
 	while (nb > 0)
 	{
